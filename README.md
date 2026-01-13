@@ -17,21 +17,24 @@ Q&A:
 - you said, part of a larger software suite?
 
 
-= Annesque setup =
+# Annesque setup
 
-== Production-grade setup ==
+## Production-grade setup
 
 The production-grade setup is encapsulated in docker and allows the user to deploy the application with very few commands. The majority of the steps are configurations for external services. First, clone the repo:
 
+```
 git clone ...
+```
 
 Then, run the setup script:
 
+```
 cd <root> ; ./scripts/setup
+```
 
 
-
-== Development-grade setup ==
+## Development-grade setup
 
 The development-grade setup is suitable for individuals who expect to contribute to the development of the application. It is a more complex setup than the production version.
 
