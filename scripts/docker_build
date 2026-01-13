@@ -1,0 +1,2 @@
+
+docker build . -f Dockerfile-ruby275 -t wasyaco/ruby275-nginx:0.0.15

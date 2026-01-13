@@ -1,0 +1,25 @@
+-#
+-# Includes bootstrap 4, fontawesome 4, jquery 3.3.1
+-#
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title Micros Email
+    %meta{content: "width=device-width,initial-scale=1", name: "viewport"}
+
+    = javascript_include_tag "//code.jquery.com/jquery-3.3.1.min.js"
+    -# = javascript_include_tag "assets/javascript/jquery-3.3.1.min.js"
+
+    = javascript_include_tag "application_bootstrap"
+    = stylesheet_link_tag    "wco/application", media: "all"
+    = stylesheet_link_tag    "application_bootstrap", media: "all"
+
+    %link{ rel: "stylesheet", href: "/fontawesome4/css/font-awesome.min.css" }
+    %link{ rel: "stylesheet", href: "/stylesheets/application_wco_drupal.css" }
+
+    = csrf_meta_tags
+    = csp_meta_tag
+  %body
+
+    = yield

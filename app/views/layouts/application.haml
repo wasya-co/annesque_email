@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title Micros Email
+    %meta{content: "width=device-width,initial-scale=1", name: "viewport"}
+
+    = javascript_include_tag "//code.jquery.com/jquery-3.3.1.min.js"
+
+    -# = stylesheet_link_tag 'application', media: 'all'
+    -# = javascript_tag 'application'
+
+    = javascript_include_tag "wco/application"
+    = stylesheet_link_tag    "wco/application", media: "all"
+
+    = csrf_meta_tags
+    = csp_meta_tag
+  %body
+
+    = render '/wco/alerts_notices' if notice || alert
+
+    %hr
+    = yield
+    %hr
+
+    .maxwidth
+      - if current_user
+        .flex-row
+          = current_user.email
+          = button_to 'Sign Out', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }
+      - else
+        = button_to 'Login', "/users/auth/keycloakopenid", method: :post

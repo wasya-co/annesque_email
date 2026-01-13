@@ -1,0 +1,41 @@
+version: '3.2'
+services:
+
+  mongo_development:
+    image: mongodb/mongodb-community-server:5.0.7-ubuntu2004
+    ports:
+      - 27037:27017
+    volumes:
+      - type: bind
+        source: ./volumes/mongo_development_data
+        target: /data/db
+    restart: 'unless-stopped'
+
+  annesque_development:
+    image: piousbox/ruby275-nginx:0.0.15
+    init: true
+    ports:
+      - 9001:80 ## https
+      - 9101:22 ## ssh
+    volumes:
+      - type: bind
+        source: ./vendor/bundle
+        target: /usr/local/bundle
+      - type: bind
+        source: volumes/root
+        target: /root
+      # - type: bind
+      #   source: volumes/letsencrypt/live
+      #   target: /etc/letsencrypt/live
+      # - type: bind
+      #   source: volumes/sites-available
+      #   target: /etc/nginx/sites-enabled
+      ## a git clone checkout
+      - type: bind
+        source: ./
+        target: /opt/projects/packagedapp
+    restart: 'unless-stopped'
+
+
+
+

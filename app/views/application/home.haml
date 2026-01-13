@@ -1,0 +1,18 @@
+
+.application-home.flexwidth
+
+  - if current_user
+    %h5 Hello.
+    %div.d-flex.pb-2
+      - if wco_email
+        .pr-3= link_to 'email', '/email'
+      - if wco_hosting
+        .pr-3= link_to 'hosting', '/hosting'
+      - if iro
+        .pr-3= link_to 'trading', '/trading'
+
+
+  - else
+    Not logged in.
+
+  User: #{current_user.inspect}

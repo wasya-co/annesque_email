@@ -1,0 +1,16 @@
+
+export PORT=3002
+export IMAP_USER = '<a@b.c>'
+export IMAP_PASSWD = '<>'
+
+# export WP_HOST=https://piousbox.com
+# export WP_USERNAME=art-donor
+# export WP_PASSWORD=<the-password>
+
+# export WP_HOST=http://localhost:8019
+# export WP_USERNAME=piousbox
+# export WP_PASSWORD=test1234
+
+WCO_API_KEY
+WCO_API_SECRET
+
