@@ -1,7 +1,9 @@
 
 Annesque email is an email client and a customer relationship management (CRM) suite. It is built on the annesque framework, which is a collection of ruby-on-rails engines, react apps, and certain other components.
 
-![App Screenshot](images/marble-hero-4.600x153.jpg)
+<p align="center">
+  <img src="images/marble-hero-4.600x153.jpg" alt="Annesque Hero" width="600">
+</p>
 
 The email client allows advanced functionality for a sophisticated email user. Filters, reminders, templates, as well as an AI capability.
 
