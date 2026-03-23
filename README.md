@@ -5,15 +5,14 @@ The email client allows advanced functionality for a sophisticated email user. F
 
 The suite integrates with gmail, allowing you to check your mailbox less, and receive less spam. Check out our tutorials and common use cases.
 
-Since email data is very sensitive, we recommend users to setup their instances of annesque crm on-premises, on their own hardware. This allows you to fully control your data, and not give it away to any provider. Having said that, Wasya Co offers ruby hosting for our apps. We can host the Annesque suite for you, and take care of all configuration requirements. This option is especially appropriate for users who anticipate filing feature requests. We will develop features according to your specification, and deploy them on your instance.
+See the full list of features: https://annesque-email.wasyaco.com/features?utm_campaign=github
 
-You can rent a cloud-hosted instance of annesque suite with our hosting plan - we offer production-grade deployments starting at $35/mo. _TODO click here.
+Since email data is very sensitive, we recommend users to setup their instances of annesque crm on-premises, on their own hardware. This allows you to fully control your data, and not give it away to any provider.
 
-# F A Q
-- another email client?!
-  That's right! Ours came out of necessity, and grew. We are proud of it.
-- list of features
-- how's security handled?
+Having said that, Wasya Co offers ruby hosting for our apps. We can host the Annesque suite for you, and take care of all configuration requirements. This option is especially appropriate for users who anticipate filing feature requests. We will develop features according to your specification, and deploy them on your instance.
+
+You can rent a cloud-hosted instance of annesque suite with our hosting plan - we offer production-grade deployments starting at $35/mo. See our hosting plans: https://wasyaco.com/hosting?utm_campaign=github
+
 
 # Build (optional)
 
