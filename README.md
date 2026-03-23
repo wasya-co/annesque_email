@@ -1,6 +1,8 @@
 
 Annesque email is an email client and a customer relationship management (CRM) suite. It is built on the annesque framework, which is a collection of ruby-on-rails engines, react apps, and certain other components.
 
+![App Screenshot](images/marble-hero-4.600x153.jpg)
+
 The email client allows advanced functionality for a sophisticated email user. Filters, reminders, templates, as well as an AI capability.
 
 The suite integrates with gmail, allowing you to check your mailbox less, and receive less spam. Check out our tutorials and common use cases.
@@ -61,9 +63,9 @@ Define your host as so:
 ubuntu:
   hosts:
     <my-host>:
-      ansible_host: 165.22.174.124
+      ansible_host: 1.2.3.4
       ansible_user: root
-      ansible_ssh_private_key_file: ~/.ssh/mac_id_rsa_2np
+      ansible_ssh_private_key_file: ~/.ssh/your_key
 ```
 
 And define your app as so:
@@ -79,9 +81,9 @@ origin: annesque-demo.wasyaco.com
 Now you can run some playbooks to set it up. Run this in order:
 
 ```
-   ansible-playbook -i inventory.yml --limit <my-host> playbooks/setup-ubuntu.yml
-   ansible-playbook -i inventory.yml --limit <my-host> playbooks/install-docker.yml
-   ansible-playbook -i inventory.yml --limit <my-host> playbooks/hosted-packagedapp.yml --extra-vars "@vars/<my-host>.yml"
+  ansible-playbook -i inventory.yml --limit <my-host> playbooks/setup-ubuntu.yml
+  ansible-playbook -i inventory.yml --limit <my-host> playbooks/install-docker.yml
+  ansible-playbook -i inventory.yml --limit <my-host> playbooks/hosted-packagedapp.yml --extra-vars "@vars/<my-host>.yml"
 ```
 
 
@@ -100,7 +102,9 @@ You can do it yourself pretty easily:
 - clone the repo and run it:
 
 ```
-  git clone ...
+  ## on your remote server:
+  git clone git@github.com:wasya-co/annesque_email.git
+  cd annesque_email
   docker compose up
 ```
 
@@ -120,8 +124,8 @@ server {
   location / {
     proxy_pass http://127.0.0.1:9002/;
   }
-    ssl_certificate /etc/letsencrypt/live/www-email.wasyaco.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/www-email.wasyaco.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/<my-host>/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/<my-host>/privkey.pem;
 }
 ```
 
