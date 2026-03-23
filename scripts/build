@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -ex
+
+# echo $(date) > timestamp
+
+git add .
+git commit -m "autocommit on $(date)."
+git push
+
+echo ok

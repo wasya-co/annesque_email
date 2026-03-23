@@ -9,13 +9,17 @@ The email client allows advanced functionality for a sophisticated email user. F
 
 The suite integrates with gmail, allowing you to check your mailbox less, and receive less spam. Check out our tutorials and common use cases.
 
-See the full list of features: https://annesque-email.wasyaco.com/features?utm_campaign=github
+<p align="center">
+  <img src="images/leads-0w.600x377.jpg" alt="Annesque Leads" width="600">
+</p>
+
+See the full list of features: [annesque-email.wasyaco.com/features](https://annesque-email.wasyaco.com/features?utm_campaign=github)
 
 Since email data is very sensitive, we recommend users to setup their instances of annesque crm on-premises, on their own hardware. This allows you to fully control your data, and not give it away to any provider.
 
 Having said that, Wasya Co offers ruby hosting for our apps. We can host the Annesque suite for you, and take care of all configuration requirements. This option is especially appropriate for users who anticipate filing feature requests. We will develop features according to your specification, and deploy them on your instance.
 
-You can rent a cloud-hosted instance of annesque suite with our hosting plan - we offer production-grade deployments starting at $35/mo. See our hosting plans: https://wasyaco.com/hosting?utm_campaign=github
+You can rent a cloud-hosted instance of annesque suite with our hosting plan - we offer production-grade deployments starting at $35/mo. See our hosting plans: [wasyaco.com/hosting](https://wasyaco.com/hosting?utm_campaign=github)
 
 
 # Build (optional)
@@ -43,7 +47,7 @@ The repo containing ansible code is the same one, and you would clone it on your
   git clone git@github.com:wasya-co/annesque_email.git
 ```
 
-Ansible runs on python so installing python locally is required. On a mac os x development laptop, we recommend this method that allows multiple python versions: https://wasyaco.com/blog/install-python
+Ansible runs on python so installing python locally is required. On a mac os x development laptop, we recommend this method that allows multiple python versions: [wasyaco.com/blog/install-python](https://wasyaco.com/blog/install-python?utm_campaign=github)
 
 Next, you would install ansible:
 
