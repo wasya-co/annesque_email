@@ -17,6 +17,8 @@ access
 
 google-services.json
 
+inventory.yml
+
 /log/*
 !/log/.keep
 
@@ -41,10 +43,14 @@ google-services.json
 volumes/*
 !volumes/.keep
 
+/vars/*
+!/vars/example-site.yml
+
+
 wco_email_rb
 
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
 
-zenv
+zenv*

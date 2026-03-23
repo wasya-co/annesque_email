@@ -1,0 +1,34 @@
+---
+- ansible.builtin.file:
+    path: /opt/tmp
+    state: directory
+- ansible.builtin.template:
+    src: opt/tmp/fullchain.pem
+    dest: /opt/tmp/fullchain.pem
+- ansible.builtin.template:
+    src: opt/tmp/privkey.pem
+    dest: /opt/tmp/privkey.pem
+
+
+- name: nginx virtual site create
+  ansible.builtin.template:
+    src: "etc/nginx/sites-available/proxy-vsite.conf"
+    dest: /etc/nginx/sites-available/{{ appliance_slug }}
+    mode: u=rw,g=r,o=r
+  # notify: reload daemon
+  notify: restart nginx
+
+- name: nginx virtual site enable
+  file:
+    src: /etc/nginx/sites-available/{{ appliance_slug }}
+    dest: /etc/nginx/sites-enabled/{{ appliance_slug }}
+    state: link
+  # notify: reload daemon
+  notify: restart nginx
+
+- name: certbot
+  ansible.builtin.shell:
+    cmd: certbot run -d {{ origin }} --nginx -n --expand --agree-tos --email poxlovi@gmail.com
+
+
+

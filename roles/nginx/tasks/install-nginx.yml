@@ -1,0 +1,70 @@
+---
+- hosts: ubuntu
+
+  tasks:
+    - name: apt apt-transport-https
+      become: true
+      ansible.builtin.apt: name=apt-transport-https   state=present
+    - name: apt build-essential
+      become: true
+      ansible.builtin.apt: name=build-essential       state=present
+    - name: apt ca-certificates
+      become: true
+      ansible.builtin.apt: name=ca-certificates       state=present
+    - name: apt certbot
+      ansible.builtin.apt: name=certbot               state=present
+      become: true
+    - name: apt python3-certbot-nginx
+      ansible.builtin.apt: name=python3-certbot-nginx state=present
+      become: true
+    - name: apt curl
+      become: true
+      ansible.builtin.apt: name=curl                  state=present
+    - name: apt dirmngr
+      become: true
+      ansible.builtin.apt: name=dirmngr               state=present
+    - name: apt gnupg
+      become: true
+      ansible.builtin.apt: name=gnupg                 state=present
+    - name: apt-key for passenger
+      become: true
+      shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+    - name: gpg key for passenger
+      become: true
+      shell: curl https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key.txt | gpg --dearmor | tee /etc/apt/trusted.gpg.d/phusion.gpg >/dev/null
+    - name: deb source for passenger
+      become: true
+      shell: echo deb https://oss-binaries.phusionpassenger.com/apt/passenger $(lsb_release -cs 2>/dev/null) main > /etc/apt/sources.list.d/passenger.list
+    - name: apt update
+      become: true
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: 'yes'
+
+    - name: install nginx
+      become: true
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    - become: true
+      ansible.builtin.apt: name=libnginx-mod-http-passenger   state=present
+
+
+
+    # - become: true
+    #   ansible.builtin.apt: name=nginx-extras                  state=present
+
+    # - name: disable apache
+    #   ansible.builtin.service:
+    #     name: apache2
+    #     state: stopped
+
+    - name: start nginx
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+        use: anything ## From: https://forum.ansible.com/t/ansible-in-a-docker-container-service-is-in-unknown-state-error/2006
+
+

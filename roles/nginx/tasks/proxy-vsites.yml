@@ -1,0 +1,34 @@
+---
+- ansible.builtin.file:
+    path: /opt/tmp
+    state: directory
+- ansible.builtin.template:
+    src: opt/tmp/fullchain.pem
+    dest: /opt/tmp/fullchain.pem
+- ansible.builtin.template:
+    src: opt/tmp/privkey.pem
+    dest: /opt/tmp/privkey.pem
+
+- name: nginx virtual site create
+  loop: "{{ proxy_vsites }}"
+  ansible.builtin.template:
+    src: "etc/nginx/sites-available/proxy-vsite-loop.conf"
+    dest: /etc/nginx/sites-available/{{ item.appliance_slug }}
+    mode: u=rw,g=r,o=r
+  notify: restart nginx
+
+- name: nginx virtual site enable
+  loop: "{{ proxy_vsites }}"
+  file:
+    src: /etc/nginx/sites-available/{{ item.appliance_slug }}
+    dest: /etc/nginx/sites-enabled/{{ item.appliance_slug }}
+    state: link
+  notify: restart nginx
+
+- name: certbot
+  loop: "{{ proxy_vsites }}"
+  ansible.builtin.shell:
+    cmd: certbot run -d {{ item.origin }} --nginx -n --expand --agree-tos --email victor@wasya.co
+
+
+

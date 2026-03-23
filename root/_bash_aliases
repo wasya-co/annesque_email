@@ -1,0 +1,15 @@
+
+
+alias be="bundle exec "
+alias dc="docker-compose "
+alias ic="ionic cordova "
+alias git_branches="git branch | grep -v trash | grep -v done "
+alias git_branch="git branch | grep -v trash | grep -v done "
+alias git_conflicts="git diff --name-only --diff-filter=U "
+alias ll='ls -lah' # --color'
+alias la='ls -A --color'
+alias l='ls -lh --color'
+alias rr='adb shell input keyevent 82 '
+alias rsync_merge='rsync -abviuzP '
+alias rsync_='rsync -ruvi '
+

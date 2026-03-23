@@ -1,0 +1,17 @@
+
+
+---
+-  tasks:
+     name: uninstall nginx
+     become: true
+     shell: apt remove nginx
+
+     name: purge nginx
+     become: true
+     shell: apt purge nginx
+
+     name: purge passenger
+     become: true
+     shell: apt purge passenger
+
+

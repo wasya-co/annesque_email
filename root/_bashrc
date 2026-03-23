@@ -1,0 +1,10 @@
+
+alias ll='ls -lah '
+alias be='bundle exec '
+
+eval "$(/opt/rbenv/bin/rbenv init - bash)"
+
+export RBENV_ROOT="/opt/rbenv"
+if [ -d "${RBENV_ROOT}" ]; then
+  export PATH="${RBENV_ROOT}/bin:${PATH}"
+fi

@@ -14,8 +14,6 @@ Rails.application.routes.draw do
 
 
   mount WcoEmail::Engine   => '/email'
-  mount WcoHosting::Engine => '/hosting'
-  mount Iro::Engine        => '/trading'
   mount Sidekiq::Web       => '/sidekiq'
   mount Wco::Engine        => '/wco'
 
