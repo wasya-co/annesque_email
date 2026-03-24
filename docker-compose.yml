@@ -55,12 +55,14 @@ services:
     # ports:
     #   - "127.0.0.1:27037:27017"
     volumes:
-      - type: bind
-        source: ./volumes/mongo_data
-        target: /data/db
+      # - type: bind
+      #   source: ./volumes/mongo_data
+      #   target: /data/db
+      - mongo_data:/data/db
     restart: 'unless-stopped'
 
 volumes:
   vendor_bundle:
+  mongo_data:
 
 

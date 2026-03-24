@@ -29,7 +29,7 @@ Build the docker image:
 
 ```
   docker build . -f Dockerfile-ruby275    -t piousbox/ruby275-nginx:0.0.16
-  docker push piousbox/ruby275:0.0.16
+  docker push piousbox/ruby275-nginx:0.0.16
 ```
 
 # Install
