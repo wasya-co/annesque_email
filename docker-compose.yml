@@ -3,10 +3,13 @@ services:
 
   app:
     image: piousbox/ruby275-nginx:0.0.16
-    command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && /opt/rbenv/shims/bundle exec puma -C config/puma.rb"
+    command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && /opt/rbenv/shims/bundle exec rake db:seed && /opt/rbenv/shims/bundle exec puma -C config/puma.rb"
     container_name: app
     environment:
       - PORT=9002
+      - EMAIL=admin@local
+      - PASSWORD=test1234
+      - RAILS_ENV=production
     # init: true
     ports:
       - 9002:9002

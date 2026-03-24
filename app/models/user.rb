@@ -37,8 +37,7 @@ class User
   field :uid
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[ keycloakopenid ]
+         :recoverable, :rememberable, :validatable
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|

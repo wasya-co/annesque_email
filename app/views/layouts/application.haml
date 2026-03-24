@@ -17,7 +17,7 @@
     = csp_meta_tag
   %body
 
-    = render '/wco/alerts_notices' if notice || alert
+    = render '/wco/application/alerts_notices' if notice || alert
 
     %hr
     = yield
@@ -29,4 +29,5 @@
           = current_user.email
           = button_to 'Sign Out', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }
       - else
-        = button_to 'Login', "/users/auth/keycloakopenid", method: :post
+        = link_to "Login", new_user_session_path
+

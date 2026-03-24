@@ -4,7 +4,7 @@ development:
     default:
       database: annesque_email_development
       hosts:
-        - mongo:27017
+        - localhost:27017
 
 
 production:

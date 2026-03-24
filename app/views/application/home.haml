@@ -4,11 +4,11 @@
   - if current_user
     %h5 Hello.
     %div.d-flex.pb-2
-      - if wco_email
+      - if defined? wco_email
         .pr-3= link_to 'email', '/email'
-      - if wco_hosting
+      - if defined? wco_hosting
         .pr-3= link_to 'hosting', '/hosting'
-      - if iro
+      - if defined? iro
         .pr-3= link_to 'trading', '/trading'
 
 

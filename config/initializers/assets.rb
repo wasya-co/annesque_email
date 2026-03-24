@@ -9,12 +9,6 @@ Rails.application.config.assets.precompile += %w(
   wco_email/application.css
   wco_email/application.js
 
-  iron_warbler/application.css
-  iron_warbler/application.js
-
-  wco_hosting/application.css
-  wco_hosting/application.js
-
   wco_models/application.css
   wco_models/application.js
 

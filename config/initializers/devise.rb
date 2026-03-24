@@ -23,10 +23,6 @@ Devise.setup do |config|
 
   config.sign_out_via = :delete
 
-  config.omniauth :keycloak_openid, "wco_email", client_options: {
-    site: "https://auth.wasya.co", realm: "wco", base_url: '' },
-    strategy_class: OmniAuth::Strategies::KeycloakOpenId
-
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
