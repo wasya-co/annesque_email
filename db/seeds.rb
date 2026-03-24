@@ -4,8 +4,9 @@ if !ENV['EMAIL'] || !ENV['PASSWORD']
   exit 2
 end
 
-leadset = Wco::Leadset.find_or_create_by!( company_url: ENV['EMAIL'] )
-profile = Wco::Profile.find_or_create_by!( email: ENV['EMAIL'] )
+leadset   = Wco::Leadset.find_or_create_by!( company_url: ENV['EMAIL'] )
+profile   = Wco::Profile.where( email: ENV['EMAIL'] ).first
+profile ||= Wco::Profile.create!( email: ENV['EMAIL'], leadset: leadset )
 
 user = User.where({ email: ENV['EMAIL'] }).first
 if user
