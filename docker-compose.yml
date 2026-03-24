@@ -5,6 +5,8 @@ services:
     image: piousbox/ruby275-nginx:0.0.16
     command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && /opt/rbenv/shims/bundle exec rake db:seed && /opt/rbenv/shims/bundle exec puma -C config/puma.rb"
     container_name: app
+    depends_on:
+      - mongo
     environment:
       - PORT=9002
       - EMAIL=admin@local
@@ -23,53 +25,28 @@ services:
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
-  # app_production:
-  #   image: piousbox/ruby275-nginx:0.0.15
-  #   init: true
+  # localstack_development:
+  #   image: localstack/localstack:3.7.0
+  #   # container_name: localstack_development
+  #   environment:
+  #     - SERVICES=s3:5002
+  #     - DEFAULT_REGION=us-east-1
+  #     - DATA_DIR=/opt/localstack/data
+  #     ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+  #     # - DEBUG=${DEBUG:-0}
   #   ports:
-  #     - 9001:80 ## https
-  #     - 9101:22 ## ssh
+  #     - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
+  #     - "127.0.0.1:4510-4559:4510-4559"  # external services port range
   #   volumes:
   #     - type: bind
-  #       source: ./vendor/bundle
-  #       target: /usr/local/bundle
+  #       source: ./volumes/localstack_development_data
+  #       target: /var/lib/localstack
   #     - type: bind
-  #       source: volumes/root
-  #       target: /root
-  #     # - type: bind
-  #     #   source: volumes/letsencrypt/live
-  #     #   target: /etc/letsencrypt/live
-  #     # - type: bind
-  #     #   source: volumes/sites-available
-  #     #   target: /etc/nginx/sites-enabled
-  #     ## a git clone checkout
-  #     - type: bind
-  #       source: ./
-  #       target: /opt/projects/packagedapp
+  #       source: ./tmp
+  #       target: /opt/tmp
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
+  #     # - ./aws:/etc/localstack/init/ready.d
   #   restart: 'unless-stopped'
-
-  localstack_development:
-    image: localstack/localstack:3.7.0
-    # container_name: localstack_development
-    environment:
-      - SERVICES=s3:5002
-      - DEFAULT_REGION=us-east-1
-      - DATA_DIR=/opt/localstack/data
-      ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
-      # - DEBUG=${DEBUG:-0}
-    ports:
-      - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-    volumes:
-      - type: bind
-        source: ./volumes/localstack_development_data
-        target: /var/lib/localstack
-      - type: bind
-        source: ./tmp
-        target: /opt/tmp
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      # - ./aws:/etc/localstack/init/ready.d
-    restart: 'unless-stopped'
 
 
   mongo:

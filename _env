@@ -1,7 +1,17 @@
 
 export myhost=<my-host>
 
+export EMAIL=admin@local
+
+
 export PORT=9002
-export IMAP_USER = '<a@b.c>'
-export IMAP_PASSWD = 's3cret'
+export IMAP_USER='<a@b.c>'
+export IMAP_PASSWD='s3cret'
+
+
+export WCO_API_KEY=<>
+export WCO_API_SECRET=<>
+
+export PEXELS_API_KEY=<>
+
 

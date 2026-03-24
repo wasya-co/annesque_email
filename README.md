@@ -92,7 +92,7 @@ Clone the repo and run it:
   mkdir -p /opt/projects ; cd /opt/projects
   git clone git@github.com:wasya-co/annesque_email.git
   cd annesque_email
-  docker compose up
+  docker compose up -d
 ```
 
 This brings up several services:
