@@ -101,11 +101,16 @@ This brings up several services:
 * application
 * redis
 * mongo
-* localstack for s3
+* localstack
 
 The application is exposed on port 9002 by default.
 
 If everything worked well, the client should not be available at your domain, as specified in vars/$myhost.yml .
+
+
+<p align="center">
+  <img src="images/login-0w.600x377.jpg" alt="Annesque Leads" width="600">
+</p>
 
 
 ## Further Steps
