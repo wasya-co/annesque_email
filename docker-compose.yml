@@ -25,28 +25,29 @@ services:
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
-  # localstack_development:
-  #   image: localstack/localstack:3.7.0
-  #   # container_name: localstack_development
-  #   environment:
-  #     - SERVICES=s3:5002
-  #     - DEFAULT_REGION=us-east-1
-  #     - DATA_DIR=/opt/localstack/data
-  #     ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
-  #     # - DEBUG=${DEBUG:-0}
-  #   ports:
-  #     - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
-  #     - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-  #   volumes:
-  #     - type: bind
-  #       source: ./volumes/localstack_development_data
-  #       target: /var/lib/localstack
-  #     - type: bind
-  #       source: ./tmp
-  #       target: /opt/tmp
-  #     - "/var/run/docker.sock:/var/run/docker.sock"
-  #     # - ./aws:/etc/localstack/init/ready.d
-  #   restart: 'unless-stopped'
+  localstack:
+    image: localstack/localstack:3.7.0
+    container_name: localstack
+    environment:
+      - SERVICES=s3:5002
+      - DEFAULT_REGION=us-east-1
+      - DATA_DIR=/opt/localstack/data
+      ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      # - DEBUG=${DEBUG:-0}
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    volumes:
+      # - type: bind
+      #   source: ./volumes/localstack_development_data
+      #   target: /var/lib/localstack
+      - localstack_data:/var/lib/localstack
+      - type: bind
+        source: ./tmp
+        target: /opt/tmp
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      # - ./aws:/etc/localstack/init/ready.d
+    restart: 'unless-stopped'
 
 
   mongo:
@@ -62,7 +63,9 @@ services:
     restart: 'unless-stopped'
 
 volumes:
-  vendor_bundle:
+  localstack_data:
   mongo_data:
+  vendor_bundle:
+
 
 
