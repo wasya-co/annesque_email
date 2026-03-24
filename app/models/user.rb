@@ -36,7 +36,8 @@ class User
   field :provider
   field :uid
 
-  devise :database_authenticatable, :registerable,
+  ## :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
   def self.from_omniauth(auth)
