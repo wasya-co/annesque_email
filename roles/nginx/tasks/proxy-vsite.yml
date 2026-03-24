@@ -9,6 +9,13 @@
     src: opt/tmp/privkey.pem
     dest: /opt/tmp/privkey.pem
 
+- name: nginx default site redirects to https
+  ansible.builtin.template:
+    src: "etc/nginx/sites-available/default.conf"
+    dest: /etc/nginx/sites-available/default
+    mode: u=rw,g=r,o=r
+  # notify: reload daemon
+  notify: restart nginx
 
 - name: nginx virtual site create
   ansible.builtin.template:

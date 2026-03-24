@@ -1,0 +1,11 @@
+packagedenv:
+  clients:
+    default:
+      database: {{ appliance_slug }}
+      hosts:
+        - mongo:27017
+      # options:
+      #   user: hm
+      #   password: hm
+      #   auth_source: admin
+

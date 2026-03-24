@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - ansible.builtin.include_role:
+        name: roles/ror
+        tasks_from: packagedapp
+
+  #   - name: configure nginx
+
+  #   - name: load data
+
+

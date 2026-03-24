@@ -1,0 +1,33 @@
+---
+- hostname:
+    name: "{{ hostname }}"
+  when: hostname is defined
+- lineinfile:
+    path: /etc/hosts
+    regexp: '{{ hostname }}'
+    line: 127.0.0.1 {{ hostname }}
+  when: hostname is defined
+
+- template:
+    src: ./root/_screenrc
+    dest: ~/.screenrc
+
+- template:
+    src: ./root/_bash_aliases
+    dest: ~/.bash_aliases
+- lineinfile:
+    path: /root/.bashrc
+    regexp: 'bash_aliases'
+    line: if [ -f ~/.bash_aliases ] ; then . ~/.bash_aliases ; fi
+
+- file:
+    path: /opt/tmp
+    state: directory
+- template:
+    src: ./opt/tmp/fullchain.pem
+    dest: /opt/tmp/fullchain.pem
+- template:
+    src: ./opt/tmp/privkey.pem
+    dest: /opt/tmp/privkey.pem
+
+

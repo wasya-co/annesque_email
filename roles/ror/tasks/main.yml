@@ -1,0 +1,24 @@
+---
+- name: root dir, other dirs
+  loop:
+    - "{{ root_dir }}/shared/config/initializers"
+    - "{{ root_dir }}/logs"
+  ansible.builtin.file:
+    # path: /opt/projects/{{ appliance_slug }}/volumes/{{ appliance_slug }}_data
+    path: "{{ item }}"
+    state: directory
+
+- name: mongoid.yml
+  ansible.builtin.template:
+    src: config/mongoid.yml
+    dest: "{{ root_dir }}/shared/config/mongoid.yml"
+
+- name: 00_s3.rb
+  ansible.builtin.template:
+    src: config/initializers/00_s3.rb
+    dest: "{{ root_dir }}/shared/config/initializers/00_s3.rb"
+
+- name: action_mailer.rb
+  ansible.builtin.template:
+    src: config/initializers/action_mailer.rb
+    dest: "{{ root_dir }}/shared/config/initializers/action_mailer.rb"

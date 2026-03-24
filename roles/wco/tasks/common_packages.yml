@@ -1,0 +1,21 @@
+---
+- ansible.builtin.apt:
+    update_cache: yes
+    # upgrade: 'yes'
+
+- ansible.builtin.apt:
+    name:
+      - certbot
+      - encfs
+      - ffmpeg
+      - imagemagick
+      - git
+      - nginx
+      - nmap
+      - python3-certbot-nginx
+      - screen
+      - silversearcher-ag
+      - tree
+      - vim
+      - zip
+    state: present

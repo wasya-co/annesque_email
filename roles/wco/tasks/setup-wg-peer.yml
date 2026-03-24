@@ -1,0 +1,44 @@
+##
+## From: https://wiki.debian.org/WireGuard
+##
+---
+- apt:
+    name:
+      - git
+      - iptables
+      - nginx
+      - python3-certbot-nginx
+      - screen
+      - silversearcher-ag
+      - tree
+      - vim
+      - wireguard
+      - zip
+    state: present
+
+- shell: ( umask 0077 && wg genkey | tee privatekey | wg pubkey > publickey )
+  args:
+    chdir: /etc/wireguard
+    creates: /etc/wireguard/privatekey
+
+- slurp:
+    src: /etc/wireguard/privatekey
+  register: wg_privkey
+- slurp:
+    src: /etc/wireguard/publickey
+  register: wg_pubkey
+- set_fact:
+    cacheable: true
+    wg_config:
+      ansible_host: "{{ ansible_host }}"
+      is_wg_server: "{{ is_wg_server | default(False) }}"
+      wg_ip: "{{ wg_ip }}"
+      wg_privkey: "{{ wg_privkey['content'] | b64decode | replace('\n', '') }}"
+      wg_pubkey: "{{ wg_pubkey['content'] | b64decode | replace('\n', '') }}"
+
+
+- name: wg0.conf
+  template:
+    src: etc/wireguard/wg0.conf-client
+    dest: /etc/wireguard/wg0.conf
+

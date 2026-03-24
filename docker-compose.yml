@@ -1,52 +1,49 @@
 
 services:
 
-  app_development:
+  app:
     image: piousbox/ruby275-nginx:0.0.16
-    # command: bundle --path vendor/bundle && bundle exec puma -C config/puma.rb
-    container_name: app_development
+    command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && /opt/rbenv/shims/bundle exec puma -C config/puma.rb"
+    container_name: app
     environment:
       - PORT=9002
-    init: true
+    # init: true
     ports:
-      # - 9002:80 ## https
-      # - 9102:22 ## ssh
       - 9002:9002
     volumes:
       - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
       - type: bind
         source: ./volumes/root
         target: /root
-      ## a git clone checkout
       - type: bind
         source: ./
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
-  app_production:
-    image: piousbox/ruby275-nginx:0.0.15
-    init: true
-    ports:
-      - 9001:80 ## https
-      - 9101:22 ## ssh
-    volumes:
-      - type: bind
-        source: ./vendor/bundle
-        target: /usr/local/bundle
-      - type: bind
-        source: volumes/root
-        target: /root
-      # - type: bind
-      #   source: volumes/letsencrypt/live
-      #   target: /etc/letsencrypt/live
-      # - type: bind
-      #   source: volumes/sites-available
-      #   target: /etc/nginx/sites-enabled
-      ## a git clone checkout
-      - type: bind
-        source: ./
-        target: /opt/projects/packagedapp
-    restart: 'unless-stopped'
+  # app_production:
+  #   image: piousbox/ruby275-nginx:0.0.15
+  #   init: true
+  #   ports:
+  #     - 9001:80 ## https
+  #     - 9101:22 ## ssh
+  #   volumes:
+  #     - type: bind
+  #       source: ./vendor/bundle
+  #       target: /usr/local/bundle
+  #     - type: bind
+  #       source: volumes/root
+  #       target: /root
+  #     # - type: bind
+  #     #   source: volumes/letsencrypt/live
+  #     #   target: /etc/letsencrypt/live
+  #     # - type: bind
+  #     #   source: volumes/sites-available
+  #     #   target: /etc/nginx/sites-enabled
+  #     ## a git clone checkout
+  #     - type: bind
+  #       source: ./
+  #       target: /opt/projects/packagedapp
+  #   restart: 'unless-stopped'
 
   localstack_development:
     image: localstack/localstack:3.7.0
@@ -72,23 +69,14 @@ services:
     restart: 'unless-stopped'
 
 
-  mongo_development:
+  mongo:
+    container_name: mongo
     image: mongodb/mongodb-community-server:5.0.7-ubuntu2004
-    ports:
-      - 27037:27017
+    # ports:
+    #   - "127.0.0.1:27037:27017"
     volumes:
       - type: bind
-        source: ./volumes/mongo_development_data
-        target: /data/db
-    restart: 'unless-stopped'
-
-  mongo_production:
-    image: mongodb/mongodb-community-server:5.0.7-ubuntu2004
-    ports:
-      - "127.0.0.1:27037:27017"
-    volumes:
-      - type: bind
-        source: ./volumes/mongo_production_data
+        source: ./volumes/mongo_data
         target: /data/db
     restart: 'unless-stopped'
 

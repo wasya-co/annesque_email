@@ -1,0 +1,8 @@
+---
+- name: Install Docker on Ubuntu
+  hosts: ubuntu
+  vars:
+    os: ubuntu
+  roles:
+    - role: roles/wco
+    - role: roles/docker

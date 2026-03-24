@@ -1,0 +1,17 @@
+
+[Interface]
+Address = {{ hostvars['rpi4']['wg_ip'] }}/24
+SaveConfig = true
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 51820
+PrivateKey = {{ wg_config.wg_privkey }}
+
+{% for peer in all_wg_peers %}
+{% if not peer.is_wg_server -%}
+[Peer]
+PublicKey = {{ peer.wg_pubkey }}
+AllowedIPs = {{ peer.ansible_host }}/32
+
+{% endif -%}
+{% endfor %}

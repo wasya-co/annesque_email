@@ -1,0 +1,13 @@
+[Interface]
+PrivateKey = {{ wg_config.wg_privkey }}
+## Client IP
+Address = {{ wg_ip }}/24
+
+[Peer]
+PublicKey = {{ hostvars['rpi4']['ansible_facts']['wg_config']['wg_pubkey'] }}
+
+## to pass internet trafic 0.0.0.0 but for peer connection only use 192.168.11.0/24, or you can also specify comma separated IPs
+AllowedIPs =  0.0.0.0/0
+
+Endpoint = {{ hostvars['rpi4']['ansible_facts']['wg_config']['wg_ip'] }}:51820
+PersistentKeepalive = 20

@@ -1,0 +1,78 @@
+---
+- name: directories
+  loop:
+    - "/opt/projects/{{ appliance_slug }}/volumes"
+    - "/opt/projects/{{ appliance_slug }}/scripts"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+
+- name: scripts/login
+  ansible.builtin.template:
+    src: scripts/login
+    dest: "/opt/projects/{{ appliance_slug }}/scripts/login"
+    mode: 755
+
+- name: docker-compose.yml
+  ansible.builtin.template:
+    src: dc-packagedapp.yml
+    dest: "/opt/projects/{{ appliance_slug }}/docker-compose.yml"
+
+# - name: codebase
+#   ansible.builtin.command:
+#     chdir: "/opt/projects/{{ appliance_slug }}/volumes"
+#     cmd: "git clone {{ git_repo }} packagedapp"
+- name: codebase
+  ansible.builtin.unarchive:
+    src: "{{ codebase_zip }}"
+    dest: "/opt/projects/{{ appliance_slug }}/volumes"
+    remote_src: yes
+
+- name: mongoid.yml
+  ansible.builtin.template:
+    src: config/mongoid.yml
+    dest: "/opt/projects/{{ appliance_slug }}/volumes/packagedapp/config/mongoid.yml"
+
+- name: tmp/cache
+  ansible.builtin.file:
+    path: "/opt/projects/{{ appliance_slug }}/volumes/packagedapp/tmp/cache"
+    state: directory
+    owner: www-data
+    group: www-data
+    # mode: 0777
+    mode: u=rwx,g=rwx,o=rwx
+
+- name: initializers 00_s3.rb, 08_integrations.rb, action_mailer.rb
+  ansible.builtin.template:
+    src: "config/initializers/{{ item }}"
+    dest: "/opt/projects/{{ appliance_slug }}/volumes/packagedapp/config/initializers/{{ item }}"
+  loop:
+    - "00_s3.rb"
+    - "08_integrations.rb"
+    - "action_mailer.rb"
+
+- name: secrets.yml
+  ansible.builtin.template:
+    src: config/secrets.yml
+    dest: "/opt/projects/{{ appliance_slug }}/volumes/packagedapp/config/secrets.yml"
+
+- name: start mongo, redis, app
+  ansible.builtin.command:
+    chdir: "/opt/projects/{{ appliance_slug }}"
+    cmd: "docker compose up -d {{ item }}"
+  loop:
+    - mongo
+    - redis
+    - app
+
+- name: bundle, nginx restart
+  ansible.builtin.command:
+    chdir: "/opt/projects/{{ appliance_slug }}"
+    cmd: "docker exec {{ appliance_slug }}-app-1 sh -c 'cd /opt/projects/packagedapp && bundle && nginx -s reload' "
+
+- name: start sidekiq
+  ansible.builtin.command:
+    chdir: "/opt/projects/{{ appliance_slug }}"
+    cmd: "docker compose up -d sidekiq"
+
+
