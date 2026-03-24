@@ -23,6 +23,8 @@ You can rent a cloud-hosted instance of annesque suite with our hosting plan - w
 
 Note: If you *are* using the instructions and they are unclear, drop us a line and we'll be happy to work with you to update the instructions.
 
+System Requirements: we find that it works on a 2Gb of RAM under light load.
+
 # Build (optional)
 
 Build the docker image:
