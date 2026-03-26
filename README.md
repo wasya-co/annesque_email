@@ -79,6 +79,7 @@ Now you can run some playbooks to set up your remote server. Run this in order:
 ```
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-ubuntu.yml
   ansible-playbook -i inventory.yml --limit $myhost playbooks/install-docker.yml
+  ansible-playbook -i inventory.yml --limit $myhost playbooks/prepare-postal.yml
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-proxy-vsite.yml --extra-vars "@vars/$myhost.yml"
 ```
 
@@ -111,6 +112,46 @@ If everything worked well, the client should not be available at your domain, as
 <p align="center">
   <img src="images/login-0w.600x377.jpg" alt="Annesque Leads" width="600">
 </p>
+
+## Postal Install
+
+We use [Postal](https://docs.postalserver.io/) for email sending and receiving. You can refer to their own documentation for more details.
+
+If you used our ansible scripts above, all you have to do is run:
+```
+  postal bootstrap postal.yourdomain.com
+```
+
+If not - the setup instructions for postal are as follows.
+
+Postal requires a few packages:
+```
+  apt install -y git curl jq
+```
+
+Get the postal installer:
+```
+  git clone https://github.com/postalserver/install /opt/postal/install
+  sudo ln -s /opt/postal/install/bin/postal /usr/bin/postal
+```
+
+MariaDB is included in our own docker-compose.yml, but you can bring it up separately:
+```
+docker run -d \
+   --name postal-mariadb \
+   -p 127.0.0.1:3306:3306 \
+   --restart always \
+   -e MARIADB_DATABASE=postal \
+   -e MARIADB_ROOT_PASSWORD=postal \
+   mariadb
+```
+
+Be sure to choose a secure password. You'll need to put this in your Postal configuration when you install it so be sure to make a (secure) note of it.
+
+Finally, install postal:
+```
+  postal bootstrap postal.yourdomain.com
+```
 
 
 ## Further Steps

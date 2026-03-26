@@ -53,6 +53,17 @@ services:
       - ./db/seed_localstack:/etc/localstack/init/ready.d
     restart: 'unless-stopped'
 
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.4
+    environment:
+      MARIADB_DATABASE: postal
+      MARIADB_ROOT_PASSWORD: postal
+    ports:
+      - 1270.0.1:3306:3306
+    restart: always
+    volumes:
+      - mariadb_data:/var/lib/mysql
 
   mongo:
     container_name: mongo
@@ -68,6 +79,7 @@ services:
 
 volumes:
   localstack_data:
+  mariadb_data:
   mongo_data:
   vendor_bundle:
 

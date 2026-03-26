@@ -1,0 +1,15 @@
+
+- name: Clone Postal install repo
+  ansible.builtin.git:
+    repo: https://github.com/postalserver/install
+    dest: /opt/postal/install
+    version: master
+    force: yes
+
+- name: Create symlink for postal binary
+  ansible.builtin.file:
+    src: /opt/postal/install/bin/postal
+    dest: /usr/bin/postal
+    state: link
+    force: yes
+

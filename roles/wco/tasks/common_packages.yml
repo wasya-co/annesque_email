@@ -6,9 +6,11 @@
 - ansible.builtin.apt:
     name:
       - certbot
+      - curl
       - encfs
       - ffmpeg
       - imagemagick
+      - jq
       - git
       - nginx
       - nmap
