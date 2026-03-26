@@ -151,7 +151,115 @@ Be sure to choose a secure password. You'll need to put this in your Postal conf
 Finally, install postal:
 ```
   postal bootstrap postal.yourdomain.com
+  ## review and change values in /opt/postal/config/postal.yml
+  postal initialize
+  postal make-user
+  postal start
+  postal status
 ```
+
+And run Caddy:
+```
+docker run -d \
+   --name postal-caddy \
+   --restart always \
+   --network host \
+   -v /opt/postal/config/Caddyfile:/etc/caddy/Caddyfile \
+   -v /opt/postal/caddy-data:/data \
+   caddy
+```
+
+
+
+## DNS Records
+
+To work properly, you'll need to configure a number of DNS records for your Postal installation. We assume ipv4 only, and the ip address of the host is `192.168.1.3`.
+
+### A Records
+
+This one is required:
+
+| Type | Hostname               | Value       |
+|------|------------------------|-------------|
+| A    | postal.your-domain.com | 192.168.1.3 |
+
+These are optional as they are an 'alternative' to an MX record pointing to `postal.your-domain.com`. Make sure that the values in `postal.yml` match: do you have `mx` or `mx1`? I encourage skipping these to reduce complexity.
+
+| Type | Hostname                   | Value       |
+|------|----------------------------|-------------|
+| A    | mx1.postal.your-domain.com | 192.168.1.3 |
+| A    | mx2.postal.your-domain.com | 192.168.1.3 |
+
+### SPF Record
+
+You can configure a global SPF record for your mail server which means domains don't need to each individually reference your server IPs.
+
+You may wish to replace `~all` with `-all` to make the SPF record stricter.
+
+| Type | Hostname                   | Value       |
+|------|----------------------------|-------------|
+| TXT  | @                          | v=spf1 ip4:192.168.1.3 ~all |
+
+Either the above (preferred), or this:
+
+| Type | Hostname                   | Value       |
+|------|----------------------------|-------------|
+| TXT  | spf.postal.your-domain.com | v=spf1 ip4:192.168.1.3 ~all |
+
+Or:
+
+| Type | Hostname                   | Value       |
+|------|----------------------------|-------------|
+| TXT  | @                          | v=spf1 a mx include:spf.postal.your-domain.com ~all |
+
+
+
+
+### Return path
+
+The return path domain is the default domain that is used as the `MAIL FROM` for all messages sent through a mail server. You should add DNS records as below.
+
+| Type | Hostname                   | Value       |
+|------|----------------------------|-------------|
+| A    | rp.postal.your-domain.com  | 192.168.1.3 |
+| MX   | rp.postal.your-domain.com  | 192.168.1.3 |
+| TXT  | rp.postal.your-domain.com  | v=spf1 a mx include:spf.postal.your-domain.com ~all |
+| TXT  | postal._domainkey.rp.postal.your-domain.com  | value from `postal default-dkim-record` |
+
+The postal UI will give you the exact value for the DKIM record.
+
+### Route domain
+
+If you wish to receive incoming e-mail by forwarding messages directly to routes in Postal, you'll need to configure a domain for this just to point to your server using an MX record. I think this is optional.
+
+| Type | Hostname                      | Value       |
+|------|-------------------------------|-------------|
+| MX   | routes.postal.your-domain.com | 10 postal.your-domain.com |
+
+### Click and Open Tracking
+
+If you would like to make use of Click and Open Tracking then you should set up these records however you also need to make changes to not show an error page to them. You can read more on the [Click & Open Tracking page](https://docs.postalserver.io/features/click-and-open-tracking). This is optional.
+
+| Type | Hostname                      | Value       |
+|------|-------------------------------|-------------|
+| A    | track.postal.your-domain.com  | 192.168.1.3 |
+
+
+### Example Postal Configuration
+
+In your `postal.yml` you should have something that looks like the below to cover the key DNS records.
+```
+dns:
+  mx_records:
+    - mx1.postal.example.com
+    - mx2.postal.example.com
+  spf_include: spf.postal.example.com
+  return_path_domain: rp.postal.example.com
+  route_domain: routes.postal.example.com
+  track_domain: track.postal.example.com
+```
+
+Actually when you click "add somain" in postal, it gives you the same instructions.
 
 
 ## Further Steps
