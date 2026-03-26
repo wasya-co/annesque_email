@@ -1,0 +1,56 @@
+
+## Postal Install
+
+We use [https://docs.postalserver.io/](Postal Server) for email sending and receiving. You can refer to their own documentation for more details.
+
+Postal requires a few packages:
+```
+  apt install -y git curl jq
+```
+
+
+
+Get the postal installer:
+```
+  git clone https://github.com/postalserver/install /opt/postal/install
+  sudo ln -s /opt/postal/install/bin/postal /usr/bin/postal
+```
+
+MariaDB is included in our own docker-compose.yml, but you can bring it up separately:
+```
+docker run -d \
+   --name postal-mariadb \
+   -p 127.0.0.1:3306:3306 \
+   --restart always \
+   -e MARIADB_DATABASE=postal \
+   -e MARIADB_ROOT_PASSWORD=postal \
+   mariadb
+```
+
+Be sure to choose a secure password. You'll need to put this in your Postal configuration when you install it so be sure to make a (secure) note of it.
+
+Now you can run:
+
+```
+  postal bootstrap postal.yourdomain.com
+  ## review and change values in /opt/postal/config/postal.yml
+  postal initialize
+  postal make-user
+  postal start
+  postal status
+```
+
+And run Caddy:
+```
+docker run -d \
+   --name postal-caddy \
+   --restart always \
+   --network host \
+   -v /opt/postal/config/Caddyfile:/etc/caddy/Caddyfile \
+   -v /opt/postal/caddy-data:/data \
+   caddy
+```
+
+Next, [setup_dns.md](setup DNS).
+
+Back to [../README.md](README).
