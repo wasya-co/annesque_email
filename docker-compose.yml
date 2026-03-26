@@ -17,8 +17,7 @@ services:
       - PASSWORD=test1234
       - RAILS_ENV=production
     # init: true
-    networks:
-      - host
+    network_mode: host
     ports:
       - 127.0.0.1:9002:9002
     volumes:
@@ -40,8 +39,7 @@ services:
       - DATA_DIR=/opt/localstack/data
       ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
       # - DEBUG=${DEBUG:-0}
-    networks:
-      - host
+    # network_mode: host
     ports:
       - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
@@ -63,8 +61,7 @@ services:
     environment:
       MARIADB_DATABASE: postal
       MARIADB_ROOT_PASSWORD: postal
-    networks:
-      - host
+    network_mode: host
     ports:
       - "127.0.0.1:3306:3306"
     restart: always
