@@ -3,7 +3,6 @@
   ansible.builtin.git:
     repo: https://github.com/postalserver/install
     dest: /opt/postal/install
-    version: master
     force: yes
 
 - name: Create symlink for postal binary

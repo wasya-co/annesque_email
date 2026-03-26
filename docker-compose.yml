@@ -60,7 +60,7 @@ services:
       MARIADB_DATABASE: postal
       MARIADB_ROOT_PASSWORD: postal
     ports:
-      - 1270.0.1:3306:3306
+      - "127.0.0.1:3306:3306"
     restart: always
     volumes:
       - mariadb_data:/var/lib/mysql
