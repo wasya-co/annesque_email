@@ -11,11 +11,13 @@ services:
     depends_on:
       - localstack
       - mongo
+      - redis
     environment:
       - PORT=9002
       - EMAIL=admin@local
       - PASSWORD=test1234
       - RAILS_ENV=production
+      - REDIS_URL=redis://redis:6379/0
     # init: true
     # networks:
     #   - internal_db_net
@@ -31,6 +33,32 @@ services:
         source: ./
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
+
+  sidekiq:
+    image: piousbox/ruby275-nginx:0.0.16
+    container_name: sidekiq
+    depends_on:
+      - redis
+      - mongo
+      - app
+    environment:
+      - RAILS_ENV=production
+      - REDIS_URL=redis://redis:6379/0
+      - EMAIL=admin@local
+      - PASSWORD=test1234
+    command: >
+      sh -c "/opt/rbenv/shims/bundle exec sidekiq -e production -C config/sidekiq.yml"
+    volumes:
+      - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
+      - type: bind
+        source: ./volumes/root
+        target: /root
+      - type: bind
+        source: ./
+        target: /opt/projects/packagedapp
+    restart: unless-stopped
+    networks:
+      - internal_db_net
 
   localstack:
     image: localstack/localstack:3.7.0
@@ -85,6 +113,16 @@ services:
       #   target: /data/db
       - mongo_data:/data/db
     restart: 'unless-stopped'
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    # volumes:
+    #   - redis_data:/data
+    networks:
+      - internal_db_net
 
   web:
     container_name: postal_web
