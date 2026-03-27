@@ -1,5 +1,4 @@
-0.0.0       :: 2023-12-15 :: start
-email-0.0.0 :: 2023-12-16 :: same as 0.0.0
-email-0.0.1 ::            :: lighter? removed chromedriver
 
-master      :: 2026-03-23 :: LFG
+master :: 2026-03-23 :: LFG
+0.0.0  :: 2026-03-27 :: lets pause this part
+0.1.0  :: 2026-03-27 :: lets merge postal and annesque docker-compose files.
