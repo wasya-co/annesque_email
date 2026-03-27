@@ -27,7 +27,14 @@ Now you can run:
 
 ```
   postal bootstrap postal.yourdomain.com /opt/projects/ansible_email/config/postal
-  ## review and change values in /opt/projects/ansible_email/config/postal/postal.yml
+  ## openssl genrsa -out $output_path/signing.key 1024
+  ## chmod 644 $output_path/signing.key
+
+```
+
+review and change values in /opt/projects/ansible_email/config/postal/postal.yml
+
+```
   postal initialize
   postal make-user
   postal start

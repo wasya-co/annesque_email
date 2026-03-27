@@ -84,6 +84,44 @@ services:
       - mongo_data:/data/db
     restart: 'unless-stopped'
 
+  ## postal server
+  web:
+    image: ghcr.io/postalserver/postal:3.3.5
+    command: postal web-server
+    network_mode: host
+    volumes:
+      - /opt/projects/annesque_email/config/postal:/config
+    restart: unless-stopped
+
+  ## postal server
+  smtp:
+    image: ghcr.io/postalserver/postal:3.3.5
+    command: postal smtp-server
+    network_mode: host
+    cap_add:
+      - NET_BIND_SERVICE
+    volumes:
+      - /opt/projects/annesque_email/config/postal:/config
+    restart: unless-stopped
+
+  ## postal server
+  worker:
+    image: ghcr.io/postalserver/postal:3.3.5
+    command: postal worker
+    network_mode: host
+    volumes:
+      - /opt/projects/annesque_email/config/postal:/config
+    restart: unless-stopped
+
+  ## postal server
+  runner:
+    profiles: ["tools"]
+    image: ghcr.io/postalserver/postal:3.3.5
+    command: postal
+    network_mode: host
+    volumes:
+      - /opt/projects/annesque_email/config/postal:/config
+
 networks:
   internal_db_net:
     internal: true

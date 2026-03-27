@@ -1,0 +1,48 @@
+version: 2
+
+postal:
+  web_hostname: postal.annesque.com
+  web_protocol: https
+  smtp_hostname: postal.annesque.com
+
+main_db:
+  host: 127.0.0.1
+  username: root
+  password: postal
+  database: postal
+
+message_db:
+  host: 127.0.0.1
+  username: root
+  password: postal
+  prefix: postal
+
+smtp_server:
+  default_bind_address: "::"
+
+dns:
+  # Specify the DNS records that you have configured. Refer to the documentation at
+  # https://github.com/atech/postal/wiki/Domains-&-DNS-Configuration for further
+  # information about these.
+  mx_records:
+    - mx.postal.annesque.com
+  spf_include: spf.postal.annesque.com
+  return_path_domain: rp.postal.annesque.com
+  route_domain: routes.postal.annesque.com
+  track_domain: track.postal.annesque.com
+
+smtp:
+  # Specify an SMTP server that can be used to send messages from the Postal management
+  # system to users. You can configure this to use a Postal mail server once the
+  # your installation has been set up.
+  host: 127.0.0.1
+  port: 2525
+  username: # Complete when Postal is running and you can
+  password: # generate the credentials within the interface.
+  from_name: Postal
+  from_address: postal.annesque.com
+
+rails:
+  # This is generated automatically by the config initialization. It should be a random
+  # string unique to your installation.
+  secret_key: 5f8c0086ea89e8fa48ccaa8eb4bc460daa1f8780d61620ea94395ce3a70f59e6677524ab85c6b1f2298e04118dbcfd2b16ac45e26848ad42b6afccc7da63a29045dfe376ecea9ea3836fdccdaba010671a76fbfed85f5bbf91d75a780e4b042e0262f8ea84ecc5293d9256d649ad55daf5e7d99d26bc9bd01483fb17eb16d51a
