@@ -86,6 +86,7 @@ services:
 
   ## postal server
   web:
+    container_name: postal_web
     image: ghcr.io/postalserver/postal:3.3.5
     command: postal web-server
     network_mode: host
@@ -95,6 +96,7 @@ services:
 
   ## postal server
   smtp:
+    container_name: postal_smtp
     image: ghcr.io/postalserver/postal:3.3.5
     command: postal smtp-server
     network_mode: host
@@ -106,6 +108,7 @@ services:
 
   ## postal server
   worker:
+    container_name: postal_worker
     image: ghcr.io/postalserver/postal:3.3.5
     command: postal worker
     network_mode: host
@@ -115,6 +118,7 @@ services:
 
   ## postal server
   runner:
+    container_name: postal_runner
     profiles: ["tools"]
     image: ghcr.io/postalserver/postal:3.3.5
     command: postal

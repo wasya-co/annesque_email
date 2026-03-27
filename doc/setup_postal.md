@@ -7,7 +7,7 @@ We use [https://docs.postalserver.io/](Postal Server) for email sending and rece
 This was done by ansible:
 ```
   apt install -y git curl jq
-  sudo ln -s /opt/projects/annesque_email/bin/postal /usr/bin/postal
+  ln -s /opt/projects/annesque_email/bin/postal /usr/bin/postal
 ```
 
 MariaDB is included in our own docker-compose.yml, but you can bring it up separately:
@@ -26,7 +26,8 @@ Be sure to choose a secure password. You'll need to put this in your Postal conf
 Now you can run:
 
 ```
-  postal bootstrap postal.yourdomain.com /opt/projects/ansible_email/config/postal
+  ## this was done, although needs to re-create encryption keys
+  # postal bootstrap postal.yourdomain.com /opt/projects/ansible_email/config/postal
   ## openssl genrsa -out $output_path/signing.key 1024
   ## chmod 644 $output_path/signing.key
 
@@ -35,7 +36,9 @@ Now you can run:
 review and change values in /opt/projects/ansible_email/config/postal/postal.yml
 
 ```
-  postal initialize
+  ## I don't need this if I run docker-compose up -d:
+  # postal initialize
+
   postal make-user
   postal start
   postal status
