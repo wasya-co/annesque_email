@@ -36,9 +36,8 @@ Now you can run:
 review and change values in /opt/projects/ansible_email/config/postal/postal.yml
 
 ```
-  ## I don't need this if I run docker-compose up -d:
-  # postal initialize
-
+  ## still need this:
+  postal initialize
   postal make-user
   postal start
   postal status
@@ -50,8 +49,8 @@ docker run -d \
    --name postal-caddy \
    --restart always \
    --network host \
-   -v /opt/postal/config/Caddyfile:/etc/caddy/Caddyfile \
-   -v /opt/postal/caddy-data:/data \
+   -v /opt/projects/annesque_email/config/postal/Caddyfile:/etc/caddy/Caddyfile \
+   -v /opt/projects/annesque_email/volumes/caddy-data:/data \
    caddy
 ```
 

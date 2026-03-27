@@ -84,7 +84,6 @@ services:
       - mongo_data:/data/db
     restart: 'unless-stopped'
 
-  ## postal server
   web:
     container_name: postal_web
     image: ghcr.io/postalserver/postal:3.3.5
@@ -94,7 +93,6 @@ services:
       - /opt/projects/annesque_email/config/postal:/config
     restart: unless-stopped
 
-  ## postal server
   smtp:
     container_name: postal_smtp
     image: ghcr.io/postalserver/postal:3.3.5
@@ -106,7 +104,6 @@ services:
       - /opt/projects/annesque_email/config/postal:/config
     restart: unless-stopped
 
-  ## postal server
   worker:
     container_name: postal_worker
     image: ghcr.io/postalserver/postal:3.3.5
@@ -116,7 +113,6 @@ services:
       - /opt/projects/annesque_email/config/postal:/config
     restart: unless-stopped
 
-  ## postal server
   runner:
     container_name: postal_runner
     profiles: ["tools"]

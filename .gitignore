@@ -42,6 +42,7 @@ inventory.yml
 /vendor
 volumes/*
 !volumes/.keep
+!volumes/caddy-data/.keep
 
 /vars/*
 !/vars/example-site.yml
