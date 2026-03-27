@@ -20,7 +20,7 @@ services:
     networks:
       - internal_db_net
     ports:
-      - 9002:9002
+      - "127.0.0.1:9002:9002"
     volumes:
       - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
       - type: bind
