@@ -39,7 +39,8 @@ services:
       - DATA_DIR=/opt/localstack/data
       ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
       # - DEBUG=${DEBUG:-0}
-    network_mode: host
+    networks:
+      - internal_db_net
     ports:
       - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
@@ -61,7 +62,8 @@ services:
     environment:
       MARIADB_DATABASE: postal
       MARIADB_ROOT_PASSWORD: postal
-    network_mode: host
+    networks:
+      - internal_db_net
     ports:
       - "127.0.0.1:3306:3306"
     restart: always
@@ -71,15 +73,20 @@ services:
   mongo:
     container_name: mongo
     image: mongodb/mongodb-community-server:5.0.7-ubuntu2004
-    network_mode: host
-    # ports:
-    #   - "127.0.0.1:27037:27017"
+    networks:
+      - internal_db_net
+    ports:
+      - "127.0.0.1:27037:27017"
     volumes:
       # - type: bind
       #   source: ./volumes/mongo_data
       #   target: /data/db
       - mongo_data:/data/db
     restart: 'unless-stopped'
+
+networks:
+  internal_db_net:
+    internal: true
 
 volumes:
   localstack_data:

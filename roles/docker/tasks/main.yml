@@ -60,6 +60,11 @@
     name: docker
     state: present
 
+- name: add db net
+  community.docker.docker_network:
+    name: internal_db_net
+    state: present
+
 - name: Add user to Docker group
   ansible.builtin.user:
     name: "{{ ansible_user }}"
