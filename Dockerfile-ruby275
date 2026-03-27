@@ -51,6 +51,7 @@ RUN apt install -y \
 WORKDIR /opt/projects/packagedapp
 
 EXPOSE 80
+EXPOSE 9002
 
 ## even
 # CMD /bin/bash -c "source /root/.bashrc && /opt/nginx/sbin/nginx -g 'daemon off;' "
