@@ -9,9 +9,10 @@ When you click "add somain" in postal, it gives you the same instructions.
 
 This one is required:
 
-| Type | Hostname               | Value       |
-|------|------------------------|-------------|
-| A    | postal.your-domain.com | 192.168.1.3 |
+| Type | Hostname                  | Value       |
+|------|---------------------------|-------------|
+| A    | postal.your-domain.com    | 192.168.1.3 |
+| A    | mx.postal.your-domain.com | 192.168.1.3 |
 
 ### SPF Record (ok)
 
