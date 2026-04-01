@@ -40,43 +40,11 @@ Build the docker image:
 
 We assume that we're running on Ubuntu all around. And our development machines are mac os x, where instead of `apt` we use `brew`.
 
-## Ansible Setup
+## Ansible setup
 
-You can skip this section and move on to Production-Grade Application Install if you install docker and nginx on your server manually.
+See [docs/setup_ansible.md](Setup Ansible) in the docs.
 
-We provide an ansible "shortcut" to setup the "bare-metal" server. This method is actually more complicated than doing it manually, but it uses basic infrastructure-as-code automation, so it may be worth the effort for some users.
-
-The repo containing ansible code is the same one, and you would clone it on your development machine rather than the (presumably empty) Ubuntu 22 or 24 remote server.
-
-```
-  git clone git@github.com:wasya-co/annesque_email.git
-```
-
-Ansible runs on python so installing python locally is required. On a mac os x development laptop, we recommend this method that allows multiple python versions: [https://wasyaco.com/blog/install-python?utm_campaign=github](wasyaco.com/blog/install-python)
-
-Install ansible:
-
-```
-  pip install ansible
-```
-
-Now, let's wire your server config. This involves an ssh key and an ip.
-
-```
-  cp inventory.yml-example inventory.yml
-```
-
-Modify the inventory file to point at your remote server, and reference the right ssh key.
-
-A note on naming. We play it safe and for a domain like annesque-demo.wasyaco.com we would write <my-host> as `annesque_demo_wasyaco_com`. It is consistent and non-surprizing. You may be more consistent replacing only dots with underscores and write your slugs as e.g. annesque-demo_wasyaco_com, however, we've found that to be error-prone.
-
-Next, define your app variables in the vars file:
-
-```
-  cp vars/example-site.yml vars/my-host.yml
-```
-
-Now you can run some playbooks to set up your remote server. Run this in order:
+Having setup Ansible, you can run some playbooks to set up your remote server.
 
 ```
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-ubuntu.yml
@@ -107,6 +75,7 @@ This brings up several services:
 * mariadb
 * mongo
 * localstack
+* background worker
 
 The application is exposed on port 9002 by default.
 
@@ -119,11 +88,11 @@ If everything worked well, the client should not be available at your domain, as
 
 ## Setup Postal
 
-We use [https://docs.postalserver.io/](Postal Server) for email sending and receiving. It is installed by the ansible run above - or to install it manually, see [/doc/setup_postal.md](Setup Postal).
+We use [https://docs.postalserver.io/](Postal Server) for email sending and receiving. It is installed by the ansible run above - or to install it manually, see [/docs/setup_postal.md](Setup Postal).
 
 ## Setup DNS
 
-See [/doc/setup_dns.md](Setup DNS).
+See [/docs/setup_dns.md](Setup DNS).
 
 ## Further Steps
 
