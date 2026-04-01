@@ -1,33 +1,28 @@
 ---
-- name: Create 6GB swap file
-  hosts: all
-  become: true
+- name: Check if swapfile already exists
+  stat:
+    path: /swapfile
+  register: swapfile
 
-  tasks:
-    - name: Check if swapfile already exists
-      stat:
-        path: /swapfile
-      register: swapfile
+- name: Create swap file
+  command: fallocate -l 4G /swapfile
+  when: not swapfile.stat.exists
 
-    - name: Create swap file (6GB)
-      command: fallocate -l 6G /swapfile
-      when: not swapfile.stat.exists
+- name: Set swap file permissions
+  file:
+    path: /swapfile
+    mode: '0600'
 
-    - name: Set swap file permissions
-      file:
-        path: /swapfile
-        mode: '0600'
+- name: Format swap
+  command: mkswap /swapfile
+  when: not swapfile.stat.exists
 
-    - name: Format swap
-      command: mkswap /swapfile
-      when: not swapfile.stat.exists
+- name: Enable swap
+  command: swapon /swapfile
+  when: not swapfile.stat.exists
 
-    - name: Enable swap
-      command: swapon /swapfile
-      when: not swapfile.stat.exists
-
-    - name: Ensure swap is persistent in fstab
-      lineinfile:
-        path: /etc/fstab
-        line: "/swapfile none swap sw 0 0"
-        state: present
+- name: Ensure swap is persistent in fstab
+  lineinfile:
+    path: /etc/fstab
+    line: "/swapfile none swap sw 0 0"
+    state: present

@@ -1,4 +1,4 @@
 ---
-# - import_tasks: list_facts.yml
 - import_tasks: common_packages.yml
 - import_tasks: common_config.yml
+- import_tasks: enable_swap.yml

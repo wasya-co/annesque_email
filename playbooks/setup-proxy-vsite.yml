@@ -1,7 +1,0 @@
----
-- hosts: ubuntu
-  tasks:
-    - ansible.builtin.include_role:
-        name: roles/nginx
-        tasks_from: proxy-vsite
-

@@ -34,6 +34,25 @@ services:
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
+  ## _TODO
+  app_worker:
+    command: be rake wco_worker
+    container_name: app_worker
+    image: piousbox/ruby275-nginx:0.0.16
+    depends_on:
+      - localstack
+      - mongo
+      - redis
+    volumes:
+      - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
+      - type: bind
+        source: ./volumes/root
+        target: /root
+      - type: bind
+        source: ./
+        target: /opt/projects/packagedapp
+    restart: 'unless-stopped'
+
   sidekiq:
     image: piousbox/ruby275-nginx:0.0.16
     container_name: sidekiq

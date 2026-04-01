@@ -40,34 +40,17 @@ Build the docker image:
 
 We assume that we're running on Ubuntu all around. And our development machines are mac os x, where instead of `apt` we use `brew`.
 
-## Ansible setup
-
 See [docs/setup_ansible.md](Setup Ansible) in the docs.
 
 Having setup Ansible, you can run some playbooks to set up your remote server.
 
 ```
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-ubuntu.yml
-  ansible-playbook -i inventory.yml --limit $myhost playbooks/install-docker.yml
-  ansible-playbook -i inventory.yml --limit $myhost playbooks/prepare-postal.yml
-  ansible-playbook -i inventory.yml --limit $myhost playbooks/prepare-app.yml
+  ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-app.yml
+
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-proxy-vsite.yml --extra-vars "@vars/$myhost.yml"
 ```
 
-
-## Production-Grade Application Install
-
-If you used ansible from before, this step was done by playbook `prepare-app.yml`. You can also perform the steps manually, as outlined below.
-
-We use docker for running the application. Clone the repo and run it:
-
-```
-  ## on your remote server:
-  mkdir -p /opt/projects ; cd /opt/projects
-  git clone git@github.com:wasya-co/annesque_email.git
-  cd annesque_email
-  docker compose up -d
-```
 
 This brings up several services:
 * application
@@ -99,8 +82,4 @@ See [/docs/setup_dns.md](Setup DNS).
 In production, you may want to (1) schedule automatic ssl renewal, (2) backups, and (3) uptime monitoring.
 
 In production, you may want to substitute localstack s3 with actual aws s3 storage.
-
-## Development-Grade Setup
-
-The development-grade setup is suitable for individuals who expect to contribute to the development of the application. It is a more complex setup than the one for production.
 
