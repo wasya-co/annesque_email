@@ -36,10 +36,18 @@ services:
     restart: 'unless-stopped'
 
 
-  app_worker_send_contexts:
+  app_worker_ctxs:
     command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
-    container_name: app_worker
+    container_name: app_worker_ctxs
+    environment:
+      - AWS_REGION=us-east-1
+      - PORT=9002
+      - EMAIL=${EMAIL}
+      - PASSWORD=${PASSWORD}
+      - POSTAL_API_SECRET=${POSTAL_API_SECRET}
+      - RAILS_ENV=production
+      - REDIS_URL=redis://redis:6379/0
     image: piousbox/ruby275-nginx:0.0.16
     depends_on:
       - localstack
