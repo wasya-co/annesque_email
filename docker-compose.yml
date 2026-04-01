@@ -36,8 +36,6 @@ services:
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
-
-
   app_worker_ctxs:
     image: piousbox/ruby275-nginx:0.0.16
     command: sh -c " \
@@ -78,8 +76,9 @@ services:
 
   sidekiq:
     image: piousbox/ruby275-nginx:0.0.16
-    command: >
-      sh -c "/opt/rbenv/shims/bundle exec sidekiq -C config/sidekiq.yml"
+    command: sh -c " \
+      /opt/rbenv/shims/bundle --path vendor/bundle && \
+      /opt/rbenv/shims/bundle exec sidekiq -C config/sidekiq.yml "
     container_name: sidekiq
     depends_on:
       - redis
