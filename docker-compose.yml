@@ -89,10 +89,10 @@ services:
       - AWS_REGION=us-east-1
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
-
       - PORT=9002
       - EMAIL=${EMAIL}
       - PASSWORD=${PASSWORD}
+    restart: unless-stopped
     volumes:
       - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
       - type: bind
@@ -101,9 +101,6 @@ services:
       - type: bind
         source: ./
         target: /opt/projects/packagedapp
-    restart: unless-stopped
-    # networks:
-    #   - internal_db_net
 
   localstack:
     image: localstack/localstack:3.7.0
