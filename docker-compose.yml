@@ -153,8 +153,8 @@ services:
     command: redis-server --appendonly yes
     # volumes:
     #   - redis_data:/data
-    networks:
-      - internal_db_net
+    # networks:
+    #   - internal_db_net
 
   postal_runner:
     container_name: postal_runner
