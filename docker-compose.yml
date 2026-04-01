@@ -64,6 +64,34 @@ services:
         source: ./
         target: /opt/projects/packagedapp
 
+  app_worker_oats:
+    image: piousbox/ruby275-nginx:0.0.16
+    command: sh -c " \
+      /opt/rbenv/shims/bundle --path vendor/bundle && \
+      /opt/rbenv/shims/bundle exec rake -T && \
+      /opt/rbenv/shims/bundle exec rake wco:run_office_actions "
+    container_name: app_worker_oats
+    # depends_on:
+    #   - mongo
+    #   - redis
+    environment:
+      - AWS_REGION=us-east-1
+      - PORT=9002
+      - EMAIL=${EMAIL}
+      - PASSWORD=${PASSWORD}
+      - POSTAL_API_SECRET=${POSTAL_API_SECRET}
+      - RAILS_ENV=production
+      - REDIS_URL=redis://redis:6379/0
+    restart: 'unless-stopped'
+    volumes:
+      - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
+      - type: bind
+        source: ./volumes/root
+        target: /root
+      - type: bind
+        source: ./
+        target: /opt/projects/packagedapp
+
   caddy:
     image: caddy:2.7.6
     container_name: caddy
