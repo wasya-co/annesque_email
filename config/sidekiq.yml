@@ -2,3 +2,6 @@
 concurrency: 5
 queues:
   - default
+  - wco_email_rb
+  - wco_email_rb_mailers
+

@@ -36,15 +36,22 @@ Now you can run:
 review and change values in /opt/projects/ansible_email/config/postal/postal.yml
 
 ```
-  ## still need this:
+  ## not used. this assumes their own docker.
   postal initialize
   postal make-user
   postal start
   postal status
+
+  ## I guess I only need this:
+  dc run --rm postal_runner postal initialize
+  dc run --rm postal_runner postal make-user
+
 ```
 
 And run Caddy:
+
 ```
+## not used. use nginx.
 docker run -d \
    --name postal-caddy \
    --restart always \
@@ -56,7 +63,7 @@ docker run -d \
 
 = Connect Postal to App =
 
-_TODO: An HTTP Endpoint must be added to Postal to communicate with the app.
+An HTTP Endpoint must be added to Postal to communicate with the app.
 
 * http://localhost:9002/email/api/messages/from-postal/${POSTAL_API_KEY}
 

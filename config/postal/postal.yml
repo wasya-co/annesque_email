@@ -46,3 +46,4 @@ rails:
   # This is generated automatically by the config initialization. It should be a random
   # string unique to your installation.
   secret_key: 5f8c0086ea89e8fa48ccaa8eb4bc460daa1f8780d61620ea94395ce3a70f59e6677524ab85c6b1f2298e04118dbcfd2b16ac45e26848ad42b6afccc7da63a29045dfe376ecea9ea3836fdccdaba010671a76fbfed85f5bbf91d75a780e4b042e0262f8ea84ecc5293d9256d649ad55daf5e7d99d26bc9bd01483fb17eb16d51a
+
