@@ -75,8 +75,11 @@ services:
       - AWS_REGION=us-east-1
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
-      - EMAIL=admin@local
-      - PASSWORD=test1234
+
+      - PORT=9002
+      - EMAIL=${EMAIL}
+      - PASSWORD=${PASSWORD}
+
     command: >
       sh -c "/opt/rbenv/shims/bundle exec sidekiq -e production -C config/sidekiq.yml"
     volumes:
@@ -88,8 +91,8 @@ services:
         source: ./
         target: /opt/projects/packagedapp
     restart: unless-stopped
-    networks:
-      - internal_db_net
+    # networks:
+    #   - internal_db_net
 
   localstack:
     image: localstack/localstack:3.7.0
