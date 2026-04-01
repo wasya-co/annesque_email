@@ -58,6 +58,8 @@ docker run -d \
 
 _TODO: An HTTP Endpoint must be added to Postal to communicate with the app.
 
+* http://localhost:9002/email/api/messages/from-postal/${POSTAL_API_KEY}
+
 _TODO: The app also needs Postal's SMTP credentials.
 
 

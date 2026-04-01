@@ -23,8 +23,7 @@ services:
     # networks:
     #   - internal_db_net
     ports:
-      # - "127.0.0.1:9002:9002"
-      - 9002:9002
+      - "127.0.0.1:9002:9002"
     volumes:
       - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
       - type: bind
@@ -155,16 +154,16 @@ services:
     networks:
       - internal_db_net
 
-  web:
-    container_name: postal_web
+  postal_runner:
+    container_name: postal_runner
+    profiles: ["tools"]
     image: ghcr.io/postalserver/postal:3.3.5
-    command: postal web-server
+    command: postal
     network_mode: host
     volumes:
       - /opt/projects/annesque_email/config/postal:/config
-    restart: unless-stopped
 
-  smtp:
+  postal_smtp:
     container_name: postal_smtp
     image: ghcr.io/postalserver/postal:3.3.5
     command: postal smtp-server
@@ -175,7 +174,16 @@ services:
       - /opt/projects/annesque_email/config/postal:/config
     restart: unless-stopped
 
-  worker:
+  postal_web:
+    container_name: postal_web
+    image: ghcr.io/postalserver/postal:3.3.5
+    command: postal web-server
+    network_mode: host
+    volumes:
+      - /opt/projects/annesque_email/config/postal:/config
+    restart: unless-stopped
+
+  postal_worker:
     container_name: postal_worker
     image: ghcr.io/postalserver/postal:3.3.5
     command: postal worker
@@ -183,15 +191,6 @@ services:
     volumes:
       - /opt/projects/annesque_email/config/postal:/config
     restart: unless-stopped
-
-  runner:
-    container_name: postal_runner
-    profiles: ["tools"]
-    image: ghcr.io/postalserver/postal:3.3.5
-    command: postal
-    network_mode: host
-    volumes:
-      - /opt/projects/annesque_email/config/postal:/config
 
 networks:
   internal_db_net:

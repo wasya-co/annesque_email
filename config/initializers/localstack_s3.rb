@@ -9,5 +9,6 @@
 ::SES_S3_CREDENTIALS ||= {
   endpoint: "http://localhost:4566/",
   force_path_style: true,
+  region: 'us-east-1',
 }
 ::SES_S3_BUCKET ||= "app-ses"

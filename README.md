@@ -46,9 +46,10 @@ This brings up several services:
 * mariadb
 * mongo
 * localstack (or use s3)
-* postal_smtp
-* postal_runner
+* postal_web
 * postal_worker
+* postal_runner
+* postal_smtp
 
 Then, configure [https://docs.postalserver.io/](Postal Server) for email sending and receiving. See [/docs/setup_postal.md](Setup Postal). As part of Postal setup you have to configure DNS - see [/docs/setup_dns.md](Setup DNS).
 
