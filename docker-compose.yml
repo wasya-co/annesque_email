@@ -3,7 +3,8 @@ services:
 
   app:
     image: piousbox/ruby275-nginx:0.0.16
-    command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && \
+    command: sh -c " \
+      /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake db:seed && \
       /opt/rbenv/shims/bundle exec rake assets:precompile && \
       /opt/rbenv/shims/bundle exec puma -C config/puma.rb "
@@ -36,10 +37,18 @@ services:
     restart: 'unless-stopped'
 
 
+
   app_worker_ctxs:
-    command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && \
+    image: piousbox/ruby275-nginx:0.0.16
+    command: sh -c " \
+      /opt/rbenv/shims/bundle --path vendor/bundle && \
+      /opt/rbenv/shims/bundle exec rake -T && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
-    container_name: app_worker_ctxs
+    container_name: app
+    depends_on:
+      - localstack
+      - mongo
+      - redis
     environment:
       - AWS_REGION=us-east-1
       - PORT=9002
@@ -48,11 +57,11 @@ services:
       - POSTAL_API_SECRET=${POSTAL_API_SECRET}
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
-    image: piousbox/ruby275-nginx:0.0.16
-    depends_on:
-      - localstack
-      - mongo
-      - redis
+    # init: true
+    # networks:
+    #   - internal_db_net
+    ports:
+      - "127.0.0.1:9002:9002"
     volumes:
       - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
       - type: bind
