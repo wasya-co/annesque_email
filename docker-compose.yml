@@ -44,9 +44,8 @@ services:
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake -T && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
-    container_name: app
+    container_name: app_worker_ctxs
     depends_on:
-      - localstack
       - mongo
       - redis
     environment:
@@ -57,11 +56,7 @@ services:
       - POSTAL_API_SECRET=${POSTAL_API_SECRET}
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
-    # init: true
-    # networks:
-    #   - internal_db_net
-    ports:
-      - "127.0.0.1:9002:9002"
+    restart: 'unless-stopped'
     volumes:
       - vendor_bundle:/opt/projects/packagedapp/vendor/bundle:cached
       - type: bind
@@ -70,7 +65,6 @@ services:
       - type: bind
         source: ./
         target: /opt/projects/packagedapp
-    restart: 'unless-stopped'
 
   caddy:
     image: caddy:2.7.6
@@ -176,6 +170,11 @@ services:
     #   - redis_data:/data
     # networks:
     #   - internal_db_net
+    healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 5s
+        timeout: 3s
+        retries: 10
 
   postal_runner:
     container_name: postal_runner
