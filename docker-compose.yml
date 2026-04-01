@@ -53,6 +53,15 @@ services:
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
   sidekiq:
     image: piousbox/ruby275-nginx:0.0.16
     container_name: sidekiq
@@ -187,6 +196,8 @@ networks:
     external: true
 
 volumes:
+  caddy_data:
+  caddy_config:
   localstack_data:
   mariadb_data:
   mongo_data:

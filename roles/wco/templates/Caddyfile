@@ -1,0 +1,6 @@
+
+{% for vsite in proxy_vsites %}
+{{ vsite.origin }} {
+  reverse_proxy {{ vsite.appliance_slug }}:{{ vsite.app_port }}
+}
+{% endfor %}

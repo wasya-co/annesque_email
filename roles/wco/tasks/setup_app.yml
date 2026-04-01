@@ -1,0 +1,33 @@
+---
+- file:
+    path: /opt/projects
+    state: directory
+
+- git:
+    repo: https://github.com/wasya-co/annesque_email.git
+    dest: /opt/projects/annesque_email
+    version: 0.1.0
+    accept_hostkey: true
+
+- name: Create symlink for postal binary
+  ansible.builtin.file:
+    src: /opt/projects/annesque_email/bin/postal
+    dest: /usr/bin/postal
+    state: link
+    force: yes
+
+## Been replaced with Caddy:
+# - ansible.builtin.include_role:
+#     name: roles/nginx
+#     tasks_from: proxy-vsites
+- template:
+    src: ./Caddyfile
+    dest: Caddyfile
+
+
+
+# - name: Run docker compose project
+#   community.docker.docker_compose:
+#     project_src: /opt/projects/annesque_email
+#     state: present
+

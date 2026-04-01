@@ -46,9 +46,7 @@ Having setup Ansible, you can run some playbooks to set up your remote server.
 
 ```
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-ubuntu.yml
-  ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-app.yml
-
-  ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-proxy-vsite.yml --extra-vars "@vars/$myhost.yml"
+  ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-app.yml --extra-vars "@vars/$myhost.yml"
 ```
 
 
@@ -59,10 +57,11 @@ This brings up several services:
 * mongo
 * localstack
 * background worker
+* caddy
 
 The application is exposed on port 9002 by default.
 
-If everything worked well, the client should not be available at your domain, as specified in vars/$myhost.yml .
+If everything worked well, the client should not be available at your domains, as specified in vars/$myhost.yml .
 
 
 <p align="center">

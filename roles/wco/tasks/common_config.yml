@@ -20,14 +20,14 @@
     regexp: 'bash_aliases'
     line: if [ -f ~/.bash_aliases ] ; then . ~/.bash_aliases ; fi
 
-- file:
-    path: /opt/tmp
-    state: directory
-- template:
-    src: ./opt/tmp/fullchain.pem
-    dest: /opt/tmp/fullchain.pem
-- template:
-    src: ./opt/tmp/privkey.pem
-    dest: /opt/tmp/privkey.pem
+# - file:
+#     path: /opt/tmp
+#     state: directory
+# - template:
+#     src: ./opt/tmp/fullchain.pem
+#     dest: /opt/tmp/fullchain.pem
+# - template:
+#     src: ./opt/tmp/privkey.pem
+#     dest: /opt/tmp/privkey.pem
 
 

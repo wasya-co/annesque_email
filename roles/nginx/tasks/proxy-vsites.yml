@@ -28,7 +28,7 @@
 - name: certbot
   loop: "{{ proxy_vsites }}"
   ansible.builtin.shell:
-    cmd: certbot run -d {{ item.origin }} --nginx -n --expand --agree-tos --email nowhere@example.com
+    cmd: certbot run -d {{ item.origin }} --nginx -n --expand --agree-tos --email test-1@wasya.co
 
 
 
