@@ -1,0 +1,10 @@
+---
+proxy_vsites:
+  - appliance_slug: postal_annesque_com
+    origin: postal.annesque.com
+    app_port: 5000
+
+  - appliance_slug: email_annesque_com
+    origin: email.annesque.com
+    app_port: 9002
+

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/wasya-co/wco_email_rb.git
-  revision: db80498f155e1e64475592c1a7bc1d2bd4d1f408
+  revision: 09b42a571a689ae9fe4e2f733eee622ab87aaf9b
   branch: 0.0.0
   specs:
     wco_email (0.1.1.104)
@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: https://github.com/wasya-co/wco_models.git
-  revision: 57cabd25b8981b49d46d0ee250307d82434fb6dc
+  revision: 855258548e5f99440288d10ab14f720be3278558
   branch: 3.3.1
   specs:
     wco_models (3.1.0.246)
@@ -128,7 +128,7 @@ GEM
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1231.0)
+    aws-partitions (1.1233.0)
     aws-sdk-core (3.244.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -140,7 +140,7 @@ GEM
     aws-sdk-kms (1.123.0)
       aws-sdk-core (~> 3, >= 3.244.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.217.0)
+    aws-sdk-s3 (1.218.0)
       aws-sdk-core (~> 3, >= 3.244.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)

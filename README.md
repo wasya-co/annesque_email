@@ -49,7 +49,6 @@ Having setup Ansible, you can run some playbooks to set up your remote server.
   ansible-playbook -i inventory.yml --limit $myhost playbooks/setup-app.yml --extra-vars "@vars/$myhost.yml"
 ```
 
-
 This brings up several services:
 * application
 * redis
@@ -59,7 +58,9 @@ This brings up several services:
 * background worker
 * caddy
 
-The application is exposed on port 9002 by default.
+Then, configure Postal. We use [https://docs.postalserver.io/](Postal Server) for email sending and receiving. It is installed by the ansible run above - or to install it manually, see [/docs/setup_postal.md](Setup Postal).
+
+Then, configure DNS. See [/docs/setup_dns.md](Setup DNS).
 
 If everything worked well, the client should not be available at your domains, as specified in vars/$myhost.yml .
 
@@ -68,17 +69,9 @@ If everything worked well, the client should not be available at your domains, a
   <img src="images/login-0w.600x377.jpg" alt="Annesque Leads" width="600">
 </p>
 
-## Setup Postal
-
-We use [https://docs.postalserver.io/](Postal Server) for email sending and receiving. It is installed by the ansible run above - or to install it manually, see [/docs/setup_postal.md](Setup Postal).
-
-## Setup DNS
-
-See [/docs/setup_dns.md](Setup DNS).
-
 ## Further Steps
 
 In production, you may want to (1) schedule automatic ssl renewal, (2) backups, and (3) uptime monitoring.
 
-In production, you may want to substitute localstack s3 with actual aws s3 storage.
+In production, you may want to substitute localstack s3 with actual aws s3 storage. _TODO Verify App configuration.
 

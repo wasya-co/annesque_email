@@ -45,7 +45,7 @@ volumes/*
 !volumes/caddy-data/.keep
 
 /vars/*
-!/vars/example-site.yml
+!/vars/*example
 
 
 wco_email_rb

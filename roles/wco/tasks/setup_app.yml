@@ -21,8 +21,8 @@
 #     name: roles/nginx
 #     tasks_from: proxy-vsites
 - template:
-    src: ./Caddyfile
-    dest: Caddyfile
+    src: Caddyfile
+    dest: /opt/projects/annesque_email/Caddyfile
 
 
 
