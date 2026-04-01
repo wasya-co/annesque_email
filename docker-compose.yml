@@ -14,7 +14,7 @@ services:
       - redis
     environment:
       - PORT=9002
-      - EMAIL=admin@local
+      - EMAIL=admin@annesque.com
       - PASSWORD=test1234
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
@@ -129,6 +129,7 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
 
+  ## no network at all.
   mongo:
     container_name: mongo
     image: mongodb/mongodb-community-server:5.0.7-ubuntu2004

@@ -27,20 +27,9 @@ Note: If you *are* using the instructions and they are unclear, drop us a line a
 
 The application needs at least 4Gb of RAM to run.
 
-# Build (optional)
-
-Build the docker image:
-
-```
-  docker build . -f Dockerfile-ruby275    -t piousbox/ruby275-nginx:0.0.16
-  docker push piousbox/ruby275-nginx:0.0.16
-```
-
 # Install
 
-We assume that we're running on Ubuntu all around. And our development machines are mac os x, where instead of `apt` we use `brew`.
-
-See [docs/setup_ansible.md](Setup Ansible) in the docs.
+We're running on Ubuntu all around. We use Docker extensively. Also, see [docs/setup_ansible.md](Setup Ansible) in the docs.
 
 Having setup Ansible, you can run some playbooks to set up your remote server.
 
@@ -50,20 +39,20 @@ Having setup Ansible, you can run some playbooks to set up your remote server.
 ```
 
 This brings up several services:
-* application
+* app
+* app_worker
+* caddy (or nginx)
 * redis
 * mariadb
 * mongo
-* localstack
-* background worker
-* caddy
+* localstack (or use s3)
+* postal_smtp
+* postal_runner
+* postal_worker
 
-Then, configure Postal. We use [https://docs.postalserver.io/](Postal Server) for email sending and receiving. It is installed by the ansible run above - or to install it manually, see [/docs/setup_postal.md](Setup Postal).
-
-Then, configure DNS. See [/docs/setup_dns.md](Setup DNS).
+Then, configure [https://docs.postalserver.io/](Postal Server) for email sending and receiving. See [/docs/setup_postal.md](Setup Postal). As part of Postal setup you have to configure DNS - see [/docs/setup_dns.md](Setup DNS).
 
 If everything worked well, the client should not be available at your domains, as specified in vars/$myhost.yml .
-
 
 <p align="center">
   <img src="images/login-0w.600x377.jpg" alt="Annesque Leads" width="600">

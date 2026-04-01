@@ -54,6 +54,13 @@ docker run -d \
    caddy
 ```
 
-Next, [setup_dns.md](setup DNS).
+= Connect Postal to App =
 
-Back to [../README.md](README).
+_TODO: An HTTP Endpoint must be added to Postal to communicate with the app.
+
+_TODO: The app also needs Postal's SMTP credentials.
+
+
+* See also [setup_dns.md](setup DNS).
+* Back to [Reqdme.md](Table of Contents).
+* Back to [../README.md](Main Readme).

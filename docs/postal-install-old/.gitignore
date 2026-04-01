@@ -1,4 +1,0 @@
-config/**/*
-/docker-compose.*
-worker-replicas
-hooks/**/*

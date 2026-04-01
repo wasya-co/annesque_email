@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it app sh -c '/opt/rbenv/shims/bundle ; /opt/rbenv/shims/bundle exec rails console'
