@@ -13,6 +13,7 @@ services:
       - mongo
       - redis
     environment:
+      - AWS_REGION: us-east-1
       - PORT=9002
       - EMAIL=${EMAIL}
       - PASSWORD=${PASSWORD}
@@ -71,6 +72,7 @@ services:
       - mongo
       - app
     environment:
+      - AWS_REGION: us-east-1
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
       - EMAIL=admin@local
