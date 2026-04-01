@@ -45,9 +45,9 @@ services:
       /opt/rbenv/shims/bundle exec rake -T && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
     container_name: app_worker_ctxs
-    depends_on:
-      - mongo
-      - redis
+    # depends_on:
+    #   - mongo
+    #   - redis
     environment:
       - AWS_REGION=us-east-1
       - PORT=9002
