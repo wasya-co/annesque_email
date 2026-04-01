@@ -35,9 +35,10 @@ services:
         target: /opt/projects/packagedapp
     restart: 'unless-stopped'
 
-  ## _TODO
-  app_worker:
-    command: be rake wco_worker
+
+  app_worker_send_contexts:
+    command: sh -c "/opt/rbenv/shims/bundle --path vendor/bundle && \
+      /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
     container_name: app_worker
     image: piousbox/ruby275-nginx:0.0.16
     depends_on:
