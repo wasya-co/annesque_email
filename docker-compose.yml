@@ -40,7 +40,6 @@ services:
     image: piousbox/ruby275-nginx:0.0.16
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
-      /opt/rbenv/shims/bundle exec rake -T && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
     container_name: app_worker_ctxs
     # depends_on:
@@ -68,7 +67,6 @@ services:
     image: piousbox/ruby275-nginx:0.0.16
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
-      /opt/rbenv/shims/bundle exec rake -T && \
       /opt/rbenv/shims/bundle exec rake wco:run_office_actions "
     container_name: app_worker_oats
     # depends_on:
@@ -76,7 +74,6 @@ services:
     #   - redis
     environment:
       - AWS_REGION=us-east-1
-      - PORT=9002
       - EMAIL=${EMAIL}
       - PASSWORD=${PASSWORD}
       - POSTAL_API_SECRET=${POSTAL_API_SECRET}
