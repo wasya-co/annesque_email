@@ -48,3 +48,5 @@ def print! a, b=''
   print a
   STDOUT.flush
 end
+
+AWS_SES_LAMBDA_SECRET ||= ENV['POSTAL_API_SECRET']

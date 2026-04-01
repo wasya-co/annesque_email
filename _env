@@ -1,8 +1,9 @@
 
 export myhost=<my-host>
 
-export EMAIL=admin@local
-
+EMAIL=admin@local
+PASSWORD=test1234
+POSTAL_API_SECRET=rhino
 
 export PORT=9002
 export IMAP_USER='<a@b.c>'

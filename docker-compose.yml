@@ -14,8 +14,9 @@ services:
       - redis
     environment:
       - PORT=9002
-      - EMAIL=admin@annesque.com
-      - PASSWORD=test1234
+      - EMAIL=${EMAIL}
+      - PASSWORD=${PASSWORD}
+      - POSTAL_API_SECRET=${POSTAL_API_SECRET}
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
     # init: true
