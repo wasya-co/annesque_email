@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/wasya-co/wco_email_rb.git
-  revision: 017a04615adedfa90e0adf328ed93c1d036e9932
+  revision: 19e4389ccf1077a13a802c507d1d92f682008594
   branch: 0.0.0
   specs:
-    wco_email (0.1.1.111)
+    wco_email (0.1.1.113)
       aws-sdk-s3
       business_time
       cancancan (~> 3.5.0)
@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: https://github.com/wasya-co/wco_models.git
-  revision: de4d441220afad0871a4ab311a97e25fa5c67a45
+  revision: df13c82cd1ba6ec137697c15efa7ea8335cf9b76
   branch: 3.3.1
   specs:
-    wco_models (3.1.0.255)
+    wco_models (3.1.0.256)
       ahoy_matey
       aws-sdk-s3
       business_time
@@ -246,6 +246,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
+    json (2.19.3)
     jwt (2.7.1)
     kaminari-actionview (1.2.2)
       actionview
@@ -293,6 +294,8 @@ GEM
       mongoid
     mongoid_paranoia (0.6.0)
       mongoid (>= 7.3)
+    moonrope-client (1.0.5)
+      json
     multi_json (1.15.0)
     multi_xml (0.6.0)
     net-imap (0.4.17)
@@ -322,6 +325,8 @@ GEM
     os (1.1.4)
     ostruct (0.6.0)
     pdf-core (0.10.0)
+    postal-ruby (1.0.1)
+      moonrope-client (>= 1.0.2, < 1.1)
     pragmatic_segmenter (0.3.24)
     prawn (2.5.0)
       matrix (~> 0.4)
@@ -506,6 +511,7 @@ DEPENDENCIES
   net-imap
   net-ssh
   nokogiri (~> 1.15.5)
+  postal-ruby (~> 1.0)
   pragmatic_segmenter (= 0.3.24)
   psych (~> 5.0.1)
   puma (~> 5.0)
