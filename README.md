@@ -72,3 +72,8 @@ In production, you may want to (1) schedule automatic ssl renewal, (2) backups, 
 
 In production, you may want to substitute localstack s3 with actual aws s3 storage. _TODO Verify App configuration.
 
+## Troubleshooting
+
+Send us a note if you get stuck.
+
+See (docs/develop.md)[/docs/develop.md] for some insights.
