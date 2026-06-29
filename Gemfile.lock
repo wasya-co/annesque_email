@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/wasya-co/wco_email_rb.git
-  revision: 2145765c49dc71e8f35dfe58bb8aa4d7af41ba6e
+  revision: 3b69426e21c5b16dc5e407a2c2a138315da4fe72
   branch: 0.0.0
   specs:
     wco_email (0.1.1.116)
@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: https://github.com/wasya-co/wco_models.git
-  revision: 53f2eee16d448510f4baddbf42a63cfe964e05f7
+  revision: 2fa23985149f7d857ab74c9228bfa31319594119
   branch: 3.3.1
   specs:
-    wco_models (3.1.0.263)
+    wco_models (3.1.0.271)
       ahoy_matey
       aws-sdk-s3
       business_time
@@ -55,6 +55,7 @@ GIT
       sass-rails (~> 6.0)
       selenium-webdriver (~> 4.9.0)
       sidekiq (~> 7.2.0)
+      streamio-ffmpeg
       stripe (~> 10.4.0)
 
 GEM
@@ -128,8 +129,8 @@ GEM
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1234.0)
-    aws-sdk-core (3.244.0)
+    aws-partitions (1.1262.0)
+    aws-sdk-core (3.252.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -137,11 +138,11 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.123.0)
-      aws-sdk-core (~> 3, >= 3.244.0)
+    aws-sdk-kms (1.129.0)
+      aws-sdk-core (~> 3, >= 3.248.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.218.0)
-      aws-sdk-core (~> 3, >= 3.244.0)
+    aws-sdk-s3 (1.226.0)
+      aws-sdk-core (~> 3, >= 3.248.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -447,6 +448,8 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     stringio (3.1.2)
     stripe (10.4.0)
     temple (0.10.4)
