@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
-gem 'ahoy_matey'
-
 gem 'bcrypt', '~> 3.1.7'
 gem 'colorize'
 gem 'devise',                         "~> 4.9.3"
