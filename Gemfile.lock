@@ -1,4 +1,26 @@
 GIT
+  remote: https://github.com/wasya-co/iron_warbler.git
+  revision: 1fda88969811feb3a234aaedb7f400f9b4aa4d86
+  branch: 2.3.0
+  specs:
+    iron_warbler (2.0.7.53)
+      business_time
+      cancancan (~> 3.5.0)
+      devise (~> 4.9.3)
+      distribution
+      exception_notification (~> 4.5.0)
+      haml (~> 6.3.0)
+      holidays
+      httparty (~> 0.21.0)
+      jbuilder (~> 2.11.0)
+      mongoid (~> 7.3.0)
+      omniauth (~> 2.1.1)
+      omniauth-keycloak (~> 1.5.1)
+      omniauth-rails_csrf_protection (~> 1.0.1)
+      rails (~> 6.1.0)
+      wco_models (~> 3.1.0)
+
+GIT
   remote: https://github.com/wasya-co/wco_email_rb.git
   revision: 1708f54f330db2293de58350955c4fb1f5150efa
   branch: 0.0.0
@@ -121,8 +143,13 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    aes_key_wrap (1.1.0)
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
+    anonymous_loader (0.1.2)
+      version_gem (~> 1.1, >= 1.1.13)
+    auth-sanitizer (0.2.2)
+      version_gem (~> 1.1, >= 1.1.10)
     aws-eventstream (1.4.0)
     aws-partitions (1.1264.0)
     aws-sdk-core (3.252.0)
@@ -151,6 +178,7 @@ GEM
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     bigdecimal (3.1.9)
+    bindata (2.5.1)
     bindex (0.8.1)
     bson (5.0.1)
     builder (3.3.0)
@@ -180,7 +208,6 @@ GEM
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
-    csv (3.3.5)
     date (3.4.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -191,6 +218,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    distribution (0.8.0)
     droplet_kit (3.20.0)
       faraday (>= 0.15)
       faraday-retry (~> 2.2.0)
@@ -206,6 +234,8 @@ GEM
       base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-follow_redirects (0.5.0)
+      faraday (>= 1, < 3)
     faraday-net_http (3.0.2)
     faraday-retry (2.2.1)
       faraday (~> 2.0)
@@ -225,8 +255,10 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    httparty (0.24.2)
-      csv
+    hashie (5.1.0)
+      logger
+    holidays (8.8.0)
+    httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.14.6)
@@ -241,6 +273,13 @@ GEM
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
     json (2.19.3)
+    json-jwt (1.17.1)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      base64
+      bindata
+      faraday (~> 2.0)
+      faraday-follow_redirects
     jwt (2.7.1)
     kaminari-actionview (1.2.2)
       actionview
@@ -312,9 +351,35 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.6-x86_64-darwin)
       racc (~> 1.4)
+    oauth2 (2.0.24)
+      anonymous_loader (~> 0.1, >= 0.1.1)
+      auth-sanitizer (~> 0.2, >= 0.2.2)
+      faraday (>= 0.17.3, < 4.0)
+      jwt (>= 1.0, < 4.0)
+      logger (~> 1.2)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0, >= 2.0.6)
+      version_gem (~> 1.1, >= 1.1.12)
     oj (3.16.10)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
+    omniauth (2.1.4)
+      hashie (>= 3.4.6)
+      logger
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-keycloak (1.5.3)
+      faraday
+      json-jwt (> 1.13.0)
+      omniauth (>= 2.0)
+      omniauth-oauth2 (>= 1.7, < 1.9)
+    omniauth-oauth2 (1.8.0)
+      oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.2)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     orm_adapter (0.5.0)
     os (1.1.4)
     ostruct (0.6.0)
@@ -339,6 +404,9 @@ GEM
       rack (>= 2.0.0)
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
+    rack-protection (3.2.0)
+      base64 (>= 0.1.0)
+      rack (~> 2.2, >= 2.2.4)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (6.1.7.10)
@@ -426,6 +494,9 @@ GEM
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    snaky_hash (2.0.6)
+      hashie (>= 0.1.0, < 6)
+      version_gem (>= 1.1.8, < 3)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -458,6 +529,7 @@ GEM
       oj (~> 3.16)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    version_gem (1.1.13)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -494,6 +566,7 @@ DEPENDENCIES
   ffi (~> 1.16.3)
   googleauth
   irb (>= 1.2.8)
+  iron_warbler!
   jbuilder (~> 2.7)
   kaminari-actionview
   kaminari-mongoid (~> 1.0.1)

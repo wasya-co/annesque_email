@@ -1,7 +1,6 @@
 ---
 - ansible.builtin.apt:
     update_cache: yes
-    # upgrade: 'yes'
 
 - ansible.builtin.apt:
     name:
