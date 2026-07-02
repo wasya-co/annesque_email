@@ -59,6 +59,10 @@ If everything worked well, the client should not be available at your domains, a
   <img src="images/login-0w.600x377.jpg" alt="Annesque Leads" width="600">
 </p>
 
+## Enable Iron Warbler
+
+To enable or disable the trading module, uncomment or comment out the line in Gemfile that mentions the iron_warbler gem.
+
 ## Update
 
 Since this project is very much a work in progress, the production setup acommodates updating to the latest version. On $myhost:
