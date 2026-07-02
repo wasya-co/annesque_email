@@ -63,6 +63,8 @@ If everything worked well, the client should not be available at your domains, a
 
 To enable or disable the trading module, uncomment or comment out the line in Gemfile that mentions the iron_warbler gem.
 
+Please note: the setup requires a Charles Schwab account. We recommend *disabling* the module if you are focusing on using the email and CRM capabilities.
+
 ## Update
 
 Since this project is very much a work in progress, the production setup acommodates updating to the latest version. On $myhost:
