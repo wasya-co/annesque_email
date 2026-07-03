@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   end
   mount Wco::Engine        => '/wco'
 
-  post '/api/email/messages/from-ses', to: 'wco_email/api#create_email_message'
-
   devise_for :users, controllers: {
   };
   resources :users
