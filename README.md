@@ -29,7 +29,7 @@ The application needs at least 4Gb of RAM to run.
 
 # Install
 
-We're running on Ubuntu all around. We use Docker extensively. Also, see [Setup Ansible](docs/setup_ansible.md) in the docs.
+We're running on Ubuntu all around. We use Docker extensively. The installation is done with Ansible - see [Setup Ansible](docs/setup_ansible.md) in the docs.
 
 Having setup Ansible, you can run some playbooks to set up your remote server.
 

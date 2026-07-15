@@ -28,6 +28,8 @@ inventory.yml
 /public/packs
 /public/packs-test
 
+/roles/wasyaco
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep

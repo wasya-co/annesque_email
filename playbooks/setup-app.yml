@@ -2,5 +2,4 @@
 - hosts: ubuntu
   tasks:
     - ansible.builtin.include_role:
-        name: roles/wco
         tasks_from: setup_app
