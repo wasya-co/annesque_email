@@ -3,6 +3,22 @@
     path: /opt/projects
     state: directory
 
+
+- apt:
+    name:
+      - spamassassin
+    state: present
+- name: Enable and start spamassassin-maintenance.timer
+  ansible.builtin.systemd:
+    name: spamassassin-maintenance.timer
+    enabled: true
+    state: started
+- name: Restart spamassassin service
+  ansible.builtin.systemd:
+    name: spamd
+    state: restarted
+
+
 - git:
     repo: https://github.com/wasya-co/annesque_email.git
     dest: /opt/projects/annesque_email
@@ -16,15 +32,10 @@
     state: link
     force: yes
 
-## Been replaced with Caddy:
+
 # - ansible.builtin.include_role:
 #     name: roles/nginx
 #     tasks_from: proxy-vsites
-- template:
-    src: Caddyfile
-    dest: /opt/projects/annesque_email/Caddyfile
-
-
 
 # - name: Run docker compose project
 #   community.docker.docker_compose:

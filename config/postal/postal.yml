@@ -42,6 +42,11 @@ smtp:
   from_name: Postal
   from_address: postal.annesque.com
 
+spamd:
+  enabled: true
+  host: 127.0.0.1
+  port: 783
+
 rails:
   # This is generated automatically by the config initialization. It should be a random
   # string unique to your installation.
