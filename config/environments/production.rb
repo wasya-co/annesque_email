@@ -71,13 +71,13 @@ Rails.application.configure do
 
 end
 
-Rails.application.config.middleware.use ExceptionNotification::Rack,
-  email: {
-    deliver_with: :deliver,
-    email_prefix: '[Email] ',
-    sender_address: %{micros_email <no-reply@wasya.co>},
-    exception_recipients: %w{poxlovi@gmail.com}
-  }
+# Rails.application.config.middleware.use ExceptionNotification::Rack,
+#   email: {
+#     deliver_with: :deliver,
+#     email_prefix: '[Email] ',
+#     sender_address: %{micros_email <no-reply@wasya.co>},
+#     exception_recipients: %w{poxlovi@gmail.com}
+#   }
 
 if ENV['APP_NAME']
   $stdout = File.new("log/#{ENV['APP_NAME']}-#{Rails.env}.log", 'w')
