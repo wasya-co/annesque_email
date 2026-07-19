@@ -22,7 +22,7 @@ message_db:
 ##
 smtp_server:
   default_bind_address: "::"
-  # default_port: 26 ## 2026-07-19 absolutely not ready for this _vp_
+  default_port: 26 ## 2026-07-19 absolutely not ready for this _vp_
 
 dns:
   # Specify the DNS records that you have configured. Refer to the documentation at
