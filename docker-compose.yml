@@ -34,6 +34,10 @@ services:
       - type: bind
         source: ./
         target: /opt/projects/packagedapp
+      ## for backups
+      - type: bind
+        source: ./tmp
+        target: /opt/tmp
     restart: 'unless-stopped'
 
   app_worker_ctxs:
@@ -237,7 +241,6 @@ services:
 
 networks:
   internal_db_net:
-    # internal: true
     external: true
 
 volumes:
