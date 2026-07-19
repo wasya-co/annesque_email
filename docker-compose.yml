@@ -21,9 +21,6 @@ services:
       - POSTAL_API_SECRET=${POSTAL_API_SECRET}
       - RAILS_ENV=production
       - REDIS_URL=redis://redis:6379/0
-    # init: true
-    # networks:
-    #   - shared_backend
     ports:
       - "127.0.0.1:9002:9002"
     volumes:
