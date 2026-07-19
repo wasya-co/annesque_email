@@ -1,0 +1,16 @@
+[main]
+; Bind to all interfaces on ports 25 and 587
+listen=[::0]:25,[::0]:587
+
+; Your server's public IP
+public_ip=YOUR_SERVER_PUBLIC_IP
+
+; Drop privileges after binding ports
+user=nobody
+group=nogroup
+
+; Connection timeouts
+inactivity_timeout=300
+
+; Cluster mode (one worker per CPU core)
+nodes=cpus

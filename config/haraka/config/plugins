@@ -1,0 +1,6 @@
+# DNS validation
+mail_from.is_resolvable
+rcpt_to.in_host_list
+
+# Queue - forward to downstream SMTP
+queue/smtp_forward

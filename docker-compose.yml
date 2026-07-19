@@ -23,7 +23,7 @@ services:
       - REDIS_URL=redis://redis:6379/0
     # init: true
     # networks:
-    #   - internal_db_net
+    #   - shared_backend
     ports:
       - "127.0.0.1:9002:9002"
     volumes:
@@ -104,6 +104,18 @@ services:
       - caddy_data:/data
       - caddy_config:/config
 
+  haraka:
+    image: instrumentisto/haraka:3.1.3
+    container_name: haraka
+    ports:
+      - "25:25"
+      - "587:587"
+    volumes:
+      - ./config/haraka:/etc/haraka/config
+    environment:
+      - HARAKA_INSTALL_PLUGINS=
+    restart: 'unless-stopped'
+
   sidekiq:
     image: piousbox/ruby275-nginx:0.0.16
     command: sh -c " \
@@ -141,7 +153,7 @@ services:
       ## LocalStack configuration: https://docs.localstack.cloud/references/configuration/
       # - DEBUG=${DEBUG:-0}
     networks:
-      - internal_db_net
+      - shared_backend
     ports:
       - "127.0.0.1:4566:4566" # LocalStack Gateway. host:container
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
@@ -164,7 +176,7 @@ services:
       MARIADB_DATABASE: postal
       MARIADB_ROOT_PASSWORD: postal
     networks:
-      - internal_db_net
+      - shared_backend
     ports:
       - "127.0.0.1:3306:3306"
     restart: always
@@ -176,7 +188,7 @@ services:
     container_name: mongo
     image: mongodb/mongodb-community-server:5.0.7-ubuntu2004
     # networks:
-    #   - internal_db_net
+    #   - shared_backend
     # ports:
     #   - "127.0.0.1:27037:27017"
     volumes:
@@ -194,7 +206,7 @@ services:
     # volumes:
     #   - redis_data:/data
     # networks:
-    #   - internal_db_net
+    #   - shared_backend
     healthcheck:
         test: ["CMD", "redis-cli", "ping"]
         interval: 5s
@@ -240,7 +252,7 @@ services:
     restart: unless-stopped
 
 networks:
-  internal_db_net:
+  shared_backend:
     external: true
 
 volumes:

@@ -17,8 +17,12 @@ message_db:
   password: postal
   prefix: postal
 
+##
+## lsof -i :25
+##
 smtp_server:
   default_bind_address: "::"
+  default_port: 26
 
 dns:
   # Specify the DNS records that you have configured. Refer to the documentation at

@@ -4,7 +4,12 @@ access
 /.bundle
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
+
+/config/haraka/config/host_list
+/config/haraka/config/smtp.ini
+/config/haraka/config/me
+/config/haraka/queue
+
 /config/master.key
 /config/initializers/0*
 !/config/initializers/0*-example
