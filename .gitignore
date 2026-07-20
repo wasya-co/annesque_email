@@ -5,10 +5,10 @@ access
 .byebug_history
 
 
-/config/haraka/config/host_list
-/config/haraka/config/smtp.ini
-/config/haraka/config/me
-/config/haraka/queue
+/haraka/config/host_list
+/haraka/config/smtp.ini
+/haraka/config/me
+/haraka/queue
 
 /config/master.key
 /config/initializers/0*

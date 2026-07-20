@@ -37,16 +37,6 @@
 # auth/flat_file
 # auth/auth_proxy
 
-# MAIL FROM
-# ----------
-mail_from.is_resolvable
-# spf
-
-# RCPT TO
-# ----------
-# At least one rcpt_to plugin is REQUIRED for inbound email.
-rcpt_to.in_host_list
-# qmail-deliverable
 
 # DATA
 # ----------
@@ -60,8 +50,8 @@ rcpt_to.in_host_list
 # spamassassin
 # uribl
 
-# QUEUE
-# ----------
-# queues: discard  qmail-queue  quarantine  smtp_forward  smtp_proxy
-# Queue mail via smtp - see config/smtp_forward.ini for where your mail goes
+mail_from.is_resolvable
+# spf
+rcpt_to.in_host_list
+annesque
 queue/smtp_forward
