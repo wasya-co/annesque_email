@@ -1,0 +1,15 @@
+[Unit]
+Description=Haraka filter
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/projects/annesque_email
+Environment="ANNESQUE_ORIGIN=http://127.0.0.1:9002"
+Environment="SIMPLE_API_TOKEN=$simple_api_token"
+ExecStart=/root/.nvm/versions/node/v24.18.0/bin/haraka -c haraka
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

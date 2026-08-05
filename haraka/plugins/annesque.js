@@ -4,7 +4,7 @@ const SIMPLE_API_TOKEN = process.env.SIMPLE_API_TOKEN
 const ANNESQUE_ORIGIN  = process.env.ANNESQUE_ORIGIN
 
 exports.hook_mail = async function (next, connection, params) {
-  this.loginfo('+++ params', params[0])
+  this.loginfo('+++ params: ', params[0])
 
   const sender_email = `${params[0].user}@${params[0].host}`.replace(/\+.*@/, "@").toLowerCase()
   this.loginfo('+++ sender_email: ', sender_email)
@@ -15,7 +15,7 @@ exports.hook_mail = async function (next, connection, params) {
       return next()
     }
     response = await response.json()
-    this.loginfo('+++ lead from webui: ', response)
+    this.loginfo('+++ lead from webui: ', JSON.stringify(response))
 
     const tags_slugs = response.tags.map(t => t.slug)
     if (tags_slugs.indexOf(BOUNCE) !== -1) {
