@@ -22,10 +22,10 @@ GIT
 
 GIT
   remote: https://github.com/wasya-co/wco_email_rb.git
-  revision: 9172ecc8ea6eda60cfce93f9b8d19cec149ccddb
+  revision: a3fa9241779c58f5ab4bfe426bd5175fff444548
   branch: 0.0.0
   specs:
-    wco_email (0.1.1.147)
+    wco_email (0.1.1.148)
       aws-sdk-s3
       business_time
       cancancan (~> 3.5.0)
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/wasya-co/wco_models.git
-  revision: e26b3541929db53563b0293244dca5736c682280
+  revision: a4fa239769e95cfc308ebd8768d2da1252346b79
   branch: 3.3.1
   specs:
     wco_models (3.1.0.315)
@@ -153,7 +153,7 @@ GEM
     auth-sanitizer (0.2.2)
       version_gem (~> 1.1, >= 1.1.10)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1280.0)
+    aws-partitions (1.1281.0)
     aws-sdk-core (3.254.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)

@@ -83,3 +83,5 @@ In production, you may want to substitute localstack s3 with actual aws s3 stora
 Send us a note if you get stuck.
 
 See (docs/develop.md)[/docs/develop.md] for some insights.
+
+Check out README.txt (not .md) for some insights.
