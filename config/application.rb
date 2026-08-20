@@ -41,10 +41,10 @@ end
 def puts! a, b=''
   puts "+++ +++ #{b}:"
   puts a.inspect
+  STDOUT.flush
 end
 
-def print! a, b=''
-  puts "+++ #{b}:"
+def print! a
   print a
   STDOUT.flush
 end
