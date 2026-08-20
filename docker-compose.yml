@@ -66,9 +66,10 @@ services:
 
   app_worker_oats:
     image: piousbox/ruby275-nginx:0.0.16
+    entrypoint: []
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
-      /opt/rbenv/shims/bundle exec rake wco:run_office_actions "
+      exec /opt/rbenv/shims/bundle exec rake wco:run_office_actions "
     container_name: app_worker_oats
     # depends_on:
     #   - mongo
