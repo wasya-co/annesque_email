@@ -18,7 +18,12 @@
     src: config/initializers/00_s3.rb
     dest: "{{ root_dir }}/shared/config/initializers/00_s3.rb"
 
-- name: action_mailer.rb
+- name: 08_integrations.rb
   ansible.builtin.template:
-    src: config/initializers/action_mailer.rb
-    dest: "{{ root_dir }}/shared/config/initializers/action_mailer.rb"
+    src: config/initializers/08_integrations.rb
+    dest: "{{ root_dir }}/shared/config/initializers/08_integrations.rb"
+
+- name: 09_action_mailer.rb
+  ansible.builtin.template:
+    src: config/initializers/09_action_mailer.rb
+    dest: "{{ root_dir }}/shared/config/initializers/09_action_mailer.rb"
