@@ -3,6 +3,6 @@
   vars:
     os: ubuntu
   roles:
-    - role: roles/wco
+    - role: roles/wasyaco
     - role: roles/docker
 

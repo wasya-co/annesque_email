@@ -1,7 +1,7 @@
 
 ## Ansible Setup
 
-You can skip this section and move on to Production-Grade Application Install if you install docker and nginx on your server manually.
+You can skip this section and move on to Production-Grade Application Install if you install docker and nginx on your server manually. (Although it is possible to install everything without Ansible, we only support installation via Ansible.)
 
 We provide an ansible "shortcut" to setup the "bare-metal" server. This method is actually more complicated than doing it manually, but it uses basic infrastructure-as-code automation, so it may be worth the effort for some users.
 
@@ -9,6 +9,12 @@ The repo containing ansible code is the same one, and you would clone it on your
 
 ```
   git clone git@github.com:wasya-co/annesque_email.git
+```
+
+We also need to get the wasyaco_ansible_role. It receives more updates than the annesque codebase, and is shared across many of our projects:
+
+```
+  cd roles ; git clone git@github.com:wasya-co/wasyaco_ansible_role.git wasyaco
 ```
 
 Ansible runs on python so installing python locally is required. On a mac os x development laptop, we recommend this method that allows multiple python versions: [https://wasyaco.com/blog/install-python?utm_campaign=github](wasyaco.com/blog/install-python)

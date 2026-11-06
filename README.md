@@ -13,13 +13,13 @@ The suite integrates with gmail, allowing you to check your mailbox less, and re
   <img src="images/leads-0w.600x377.jpg" alt="Annesque Leads" width="600">
 </p>
 
-See the full list of features: [https://annesque-email.wasyaco.com/features?utm_campaign=github](annesque-email.wasyaco.com/features)
+See the full list of features: [annesque-email.wasyaco.com/features](https://annesque-email.wasyaco.com/features?utm_campaign=github)
 
 Since email data is highly sensitive, we recommend users to setup their instances of annesque crm on-premises, on their own hardware. This allows you to fully control your data, and not give it away to any provider.
 
 Having said that, Wasya Co offers ruby hosting for our apps. We can host the Annesque suite for you, and take care of all configuration requirements. This option is especially appropriate for users who anticipate filing feature requests. We will develop features according to your specification, and deploy them on your instance.
 
-You can rent a cloud-hosted instance of annesque suite with our hosting plan - we offer production-grade deployments starting at $35/mo. See our hosting plans: [https://wasyaco.com/hosting?utm_campaign=github](wasyaco.com/hosting)
+You can rent a cloud-hosted instance of annesque suite with our hosting plan - we offer production-grade deployments starting at $35/mo. See our hosting plans: [wasyaco.com/hosting](https://wasyaco.com/hosting?utm_campaign=github)
 
 Note: If you *are* using the instructions and they are unclear, drop us a line and we'll be happy to work with you to update the instructions.
 
@@ -29,7 +29,7 @@ The application needs at least 4Gb of RAM to run.
 
 # Install
 
-We're running on Ubuntu all around. We use Docker extensively. Also, see [docs/setup_ansible.md](Setup Ansible) in the docs.
+We're running on Ubuntu all around. We use Docker extensively. The installation is done with Ansible - see [Setup Ansible](docs/setup_ansible.md) in the docs.
 
 Having setup Ansible, you can run some playbooks to set up your remote server.
 
@@ -51,7 +51,7 @@ This brings up several services:
 * postal_runner
 * postal_smtp
 
-Then, configure [https://docs.postalserver.io/](Postal Server) for email sending and receiving. See [/docs/setup_postal.md](Setup Postal). As part of Postal setup you have to configure DNS - see [/docs/setup_dns.md](Setup DNS).
+Then, configure [Postal Server](https://docs.postalserver.io/) for email sending and receiving. See [Setup Postal](/docs/setup_postal.md). As part of Postal setup you have to configure DNS - see [Setup DNS](/docs/setup_dns.md).
 
 If everything worked well, the client should not be available at your domains, as specified in vars/$myhost.yml .
 
@@ -59,9 +59,29 @@ If everything worked well, the client should not be available at your domains, a
   <img src="images/login-0w.600x377.jpg" alt="Annesque Leads" width="600">
 </p>
 
+## Enable Iron Warbler
+
+To enable or disable the trading module, uncomment or comment out the line in Gemfile that mentions the iron_warbler gem.
+
+Please note: the setup requires a Charles Schwab account. We recommend *disabling* the module if you are focusing on using the email and CRM capabilities.
+
+## Update
+
+Since this project is very much a work in progress, the production setup acommodates updating to the latest version. On $myhost:
+  cd $ROOT ; ./r
+
+The script named `r` (for refresh or reload) encapsulates the update logic.
+
 ## Further Steps
 
 In production, you may want to (1) schedule automatic ssl renewal, (2) backups, and (3) uptime monitoring.
 
 In production, you may want to substitute localstack s3 with actual aws s3 storage. _TODO Verify App configuration.
 
+## Troubleshooting
+
+Send us a note if you get stuck.
+
+See (docs/develop.md)[/docs/develop.md] for some insights.
+
+Check out README.txt (not .md) for some insights.

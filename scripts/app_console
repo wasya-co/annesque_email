@@ -1,3 +1,7 @@
 #!/bin/bash
 
+##
+## RAIS_ENV has been set already
+##
+
 docker exec -it app sh -c '/opt/rbenv/shims/bundle ; /opt/rbenv/shims/bundle exec rails console'

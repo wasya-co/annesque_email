@@ -17,8 +17,12 @@ message_db:
   password: postal
   prefix: postal
 
+##
+## lsof -i :25
+##
 smtp_server:
   default_bind_address: "::"
+  default_port: 26 ## 2026-07-19 absolutely not ready for this _vp_
 
 dns:
   # Specify the DNS records that you have configured. Refer to the documentation at
@@ -41,6 +45,11 @@ smtp:
   password: # generate the credentials within the interface.
   from_name: Postal
   from_address: postal.annesque.com
+
+spamd:
+  enabled: true
+  host: 127.0.0.1
+  port: 783
 
 rails:
   # This is generated automatically by the config initialization. It should be a random

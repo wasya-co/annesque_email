@@ -4,7 +4,12 @@ access
 /.bundle
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
+
+/haraka/config/host_list
+/haraka/config/smtp.ini
+/haraka/config/me
+/haraka/queue
+
 /config/master.key
 /config/initializers/0*
 !/config/initializers/0*-example
@@ -27,6 +32,8 @@ inventory.yml
 /public/assets
 /public/packs
 /public/packs-test
+
+/roles/wasyaco
 
 # Ignore uploaded files in development.
 /storage/*
