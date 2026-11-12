@@ -5,7 +5,7 @@ Rails.application.routes.default_url_options[:host] = "wasyaco.com"
 Rails.application.configure do
   config.cache_classes = true
   config.eager_load    = true
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
