@@ -3,8 +3,8 @@
 ##
 ## This builds a ruby+nginx image.
 ##
-##   docker build . -f Dockerfile-ruby275    -t piousbox/ruby275-nginx:0.0.17
-##   docker push piousbox/ruby275-nginx:0.0.17
+##   docker build . -f Dockerfile-ruby275    -t piousbox/ruby275-nginx:0.0.18
+##   docker push piousbox/ruby275-nginx:0.0.18
 ##
 
 FROM debian:bookworm
@@ -14,7 +14,7 @@ RUN apt-get update && \
     cron curl \
     git gnupg2 \
     imagemagick iputils-ping \
-    lsof \
+    libyaml-dev lsof \
     net-tools \
     screen silversearcher-ag \
     telnet \
@@ -45,21 +45,27 @@ RUN . /root/.bashrc ; \
   passenger-install-nginx-module --auto ; \
   echo ok
 
-
-RUN apt install -y \
-  libyaml-dev
-
 RUN apt update && apt install -y \
     python3 \
     python3-dev \
     make \
     g++ \
     build-essential
-
-ENV PYTHON=/usr/bin/python3
+RUN ln -s /usr/bin/python3 /usr/local/bin/python
 
 RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt install -y nodejs
+
+RUN apt update && apt install -y \
+    pkg-config \
+    build-essential \
+    libx11-dev \
+    libxi-dev \
+    libxext-dev \
+    libx11-xcb-dev \
+    libxkbfile-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev
 
 RUN npm install -g yarn
 
