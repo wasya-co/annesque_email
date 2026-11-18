@@ -2,7 +2,7 @@
 services:
 
   app:
-    image: piousbox/ruby275-nginx:0.0.16
+    image: piousbox/ruby275-nginx:0.0.17
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake db:seed && \
@@ -38,7 +38,7 @@ services:
     restart: 'unless-stopped'
 
   app_worker_ctxs:
-    image: piousbox/ruby275-nginx:0.0.16
+    image: piousbox/ruby275-nginx:0.0.17
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
@@ -65,7 +65,7 @@ services:
         target: /opt/projects/packagedapp
 
   app_worker_oats:
-    image: piousbox/ruby275-nginx:0.0.16
+    image: piousbox/ruby275-nginx:0.0.17
     entrypoint: []
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
@@ -117,9 +117,7 @@ services:
   #   restart: 'unless-stopped'
 
   headtts:
-    build:
-      context: .
-      dockerfile: Dockerfile-headtts
+    image: piousbox/headtts:0.0.2
     container_name: headtts
     ports:
       - "8882:8882"
@@ -133,7 +131,7 @@ services:
     restart: unless-stopped
 
   sidekiq:
-    image: piousbox/ruby275-nginx:0.0.16
+    image: piousbox/ruby275-nginx:0.0.17
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec sidekiq -C config/sidekiq.yml "
@@ -186,8 +184,8 @@ services:
     restart: 'unless-stopped'
 
   mariadb:
-    container_name: mariadb
     image: mariadb:10.4
+    container_name: mariadb
     environment:
       MARIADB_DATABASE: postal
       MARIADB_ROOT_PASSWORD: postal
@@ -201,8 +199,8 @@ services:
 
   ## no network at all.
   mongo:
-    container_name: mongo
     image: mongodb/mongodb-community-server:5.0.7-ubuntu2004
+    container_name: mongo
     # networks:
     #   - shared_backend
     # ports:
@@ -230,9 +228,9 @@ services:
         retries: 10
 
   postal_runner:
+    image: ghcr.io/postalserver/postal:3.3.5
     container_name: postal_runner
     profiles: ["tools"]
-    image: ghcr.io/postalserver/postal:3.3.5
     command: postal
     network_mode: host
     restart: 'unless-stopped'
@@ -240,8 +238,8 @@ services:
       - /opt/projects/annesque_email/config/postal:/config
 
   postal_smtp:
-    container_name: postal_smtp
     image: ghcr.io/postalserver/postal:3.3.5
+    container_name: postal_smtp
     command: postal smtp-server
     network_mode: host
     cap_add:
@@ -251,8 +249,8 @@ services:
     restart: unless-stopped
 
   postal_web:
-    container_name: postal_web
     image: ghcr.io/postalserver/postal:3.3.5
+    container_name: postal_web
     command: postal web-server
     network_mode: host
     volumes:
@@ -260,8 +258,8 @@ services:
     restart: unless-stopped
 
   postal_worker:
-    container_name: postal_worker
     image: ghcr.io/postalserver/postal:3.3.5
+    container_name: postal_worker
     command: postal worker
     network_mode: host
     volumes:
@@ -275,6 +273,7 @@ networks:
 volumes:
   caddy_data:
   caddy_config:
+  headtts-cache:
   localstack_data:
   mariadb_data:
   mongo_data:

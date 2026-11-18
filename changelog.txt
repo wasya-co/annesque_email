@@ -1,4 +1,8 @@
 
-master :: 2026-03-23 :: LFG
-0.0.0  :: 2026-03-27 :: lets pause this part
-0.1.0  :: 2026-03-27 :: lets merge postal and annesque docker-compose files.
+master                  :: 2026-03-23 :: LFG
+0.0.0                   :: 2026-03-27 :: lets pause this part
+0.1.0                   :: 2026-03-27 :: lets merge postal and annesque docker-compose files.
+
+piousbox/ruby275:0.0.16 :: 2026-11-18 :: this image works very well
+piousbox/ruby275:0.0.17 :: 2026-11-18 :: with node 24 and python3
+piousbox/headtts:0.0.2  :: 2026-11-18
