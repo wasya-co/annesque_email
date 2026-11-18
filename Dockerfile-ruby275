@@ -3,8 +3,8 @@
 ##
 ## This builds a ruby+nginx image.
 ##
-##   docker build . -f Dockerfile-ruby275    -t piousbox/ruby275:0.0.17
-##   docker push piousbox/ruby275:0.0.17
+##   docker build . -f Dockerfile-ruby275    -t piousbox/ruby275-nginx:0.0.17
+##   docker push piousbox/ruby275-nginx:0.0.17
 ##
 
 FROM debian:bookworm

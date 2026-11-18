@@ -122,8 +122,8 @@ services:
     ports:
       - "8882:8882"
     volumes:
-      - ./volumes/voices:/app/voices
-      - ./volumes/dictionaries:/app/dictionaries
+      # - ./volumes/voices:/app/voices
+      # - ./volumes/dictionaries:/app/dictionaries
       - headtts-cache:/root/.cache
       - type: bind
         source: ./config/headtts-node.json
