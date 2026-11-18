@@ -116,6 +116,22 @@ services:
   #     - HARAKA_INSTALL_PLUGINS=
   #   restart: 'unless-stopped'
 
+  headtts:
+    build:
+      context: .
+      dockerfile: Dockerfile-headtts
+    container_name: headtts
+    ports:
+      - "8882:8882"
+    volumes:
+      - ./volumes/voices:/app/voices
+      - ./volumes/dictionaries:/app/dictionaries
+      - headtts-cache:/root/.cache
+      - type: bind
+        source: ./config/headtts-node.json
+        target: /app/headtts-node.json
+    restart: unless-stopped
+
   sidekiq:
     image: piousbox/ruby275-nginx:0.0.16
     command: sh -c " \
