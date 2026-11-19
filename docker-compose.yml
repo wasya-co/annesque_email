@@ -2,7 +2,7 @@
 services:
 
   app:
-    image: piousbox/ruby275-nginx:0.0.18
+    image: piousbox/ruby275-nginx:0.0.19
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake db:seed && \
@@ -38,7 +38,7 @@ services:
     restart: 'unless-stopped'
 
   app_worker_ctxs:
-    image: piousbox/ruby275-nginx:0.0.18
+    image: piousbox/ruby275-nginx:0.0.19
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake wco_email:send_contexts "
@@ -65,7 +65,7 @@ services:
         target: /opt/projects/packagedapp
 
   app_worker_oats:
-    image: piousbox/ruby275-nginx:0.0.18
+    image: piousbox/ruby275-nginx:0.0.19
     entrypoint: []
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
