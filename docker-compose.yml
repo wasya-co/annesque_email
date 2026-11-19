@@ -2,7 +2,7 @@
 services:
 
   app:
-    image: piousbox/ruby275-nginx:0.0.19
+    image: piousbox/ruby275-nginx:0.0.17
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake db:seed && \
