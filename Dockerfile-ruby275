@@ -15,6 +15,7 @@ FROM debian:bookworm
 RUN apt-get update && \
   apt-get install -y \
     cron curl \
+    ffmpeg \
     git gnupg2 \
     imagemagick iputils-ping \
     libyaml-dev lsof \
