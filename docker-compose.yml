@@ -131,7 +131,7 @@ services:
     restart: unless-stopped
 
   sidekiq:
-    image: piousbox/ruby275-nginx:0.0.18
+    image: piousbox/ruby275-nginx:0.0.19
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec sidekiq -C config/sidekiq.yml "
