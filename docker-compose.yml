@@ -3,7 +3,7 @@ services:
 
   app:
     ## 2026-11-19, 0.0.16 works but I need to recompile/rebundle puma.
-    image: piousbox/ruby275-nginx:0.0.16
+    image: piousbox/ruby275-nginx:0.0.19
     command: sh -c " \
       /opt/rbenv/shims/bundle --path vendor/bundle && \
       /opt/rbenv/shims/bundle exec rake db:seed && \
