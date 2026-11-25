@@ -49,8 +49,8 @@ GIT
 
 GIT
   remote: https://github.com/wasya-co/wco_models.git
-  revision: 521249bc8b62176846e4f96c09f249c44b0270be
-  branch: 3.5.0
+  revision: 3763b36e2d66ec39eacae9beb5164cbfea40ffe9
+  branch: 3.5.1
   specs:
     wco_models (3.5.0.7)
       aws-sdk-s3

@@ -7,3 +7,5 @@ piousbox/ruby275:0.0.16 :: 2026-11-18 :: this image works very well
 piousbox/ruby275:0.0.17 :: 2026-11-18 :: with node 24 and python3
 piousbox/headtts:0.0.2  :: 2026-11-18
 piousbox/ruby275:0.0.19 :: 2026-11-18 :: with google-chrome
+
+0.2.0 :: 2026-11-24 :: with wco_models_rb@3.5.1 which merges 3.4.0, 3.4.2 and 3.5.0
